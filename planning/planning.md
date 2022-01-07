@@ -27,3 +27,4 @@ Description:
 
 #### Stories:
 - As a user, *I want to see featured items*, because *there may be good deals*, when *I am on my main feed*.
+- As a user, *I want to filter items by price*, because *I have budget constraints*.
