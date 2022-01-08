@@ -56,7 +56,11 @@ ERD.drawio file contains ERD.
 
  R GET "/cars/:id" //individual car details
 
+ E POST/PUT "/cars/:id" /Edit car details
+
  A POST "/cars/new" //add new car posting
+
+ D POST/DELETE "/cars/:id/delete" // Delete car
 
 
  ### singular user/endpoints
@@ -65,14 +69,27 @@ ERD.drawio file contains ERD.
 
  R GET "/user/myListings"   // Get user listings
 
- E POST "/users/:id"   //edit account info
+ E (stretch)POST "/users/:id"   //edit account info
 
-## conversation endpoints/conversations
+### conversation endpoints/conversations
 
  R GET "/conversation" //show all conversations
 
  E POST "/conversation/:id" //reply to a conversation
 
- A POST "/conversation/new" //start a new conversation with owner
+ A POST "/conversation" //start a new conversation with owner
 
- D POST "/conversation/:id/delete" //delete a conversation
+ D POST/DELETE "/conversation/:id/delete" //delete a conversation
+
+## MVP/MVD
+
+
+TASKS:
+Nikhil:
+- set up routes/routers on vscode
+
+Jeremy:
+- mock up wireframes/page UI/design
+
+Olga:
+- Database schema/seeds
