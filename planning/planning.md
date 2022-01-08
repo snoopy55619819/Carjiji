@@ -48,7 +48,31 @@ ERD.drawio file contains ERD.
 
 ---
 
-## **Routes**
+## ROUTES
 
-RESTful routes for BREAD 
+ //generic endpoint
 
+ B GET "/cars" //homepage -> show all cars
+
+ R GET "/cars/:id" //individual car details
+
+ A POST "/cars/new" //add new car posting
+
+
+ ### singular user/endpoints
+
+ R GET "/user" //gets user acocunt info
+
+ R GET "/user/myListings"   // Get user listings
+
+ E POST "/users/:id"   //edit account info
+
+## conversation endpoints/conversations
+
+ R GET "/conversation" //show all conversations
+
+ E POST "/conversation/:id" //reply to a conversation
+
+ A POST "/conversation/new" //start a new conversation with owner
+
+ D POST "/conversation/:id/delete" //delete a conversation
