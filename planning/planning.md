@@ -3,6 +3,7 @@
 ## **Pick a topic**
 
 Buy/Sell Listing Website
+Niche: car listings in Toronto
 
 ---
 ## **User Stories/Scenarios**
@@ -25,28 +26,22 @@ Description:
 
 
 #### Stories:
-- As a user, *I want to see featured items*, because *there may be good deals*, when *I am on my main feed*.
-- As a user, *I want to filter items by price*, because *I have budget constraints*.
-- As a user, *I want to favourite items and check on them later*, because *I am not done shopping yet*.
-- As a user, *I want to send a message to the owner of the listing*, because *I want to but a customized or bulk order*.
-- As an admin, *I want to post items*, because *I want to sell the product*.
-- As an admin, *I want to remove items from the site*, because *the item is no longer available for sale*.
-- As an admin, *I want to mark items as 'SOLD!'*, because *the item has been sold and is not longer available*.
-- As an admin, *I want to send a message via app, email or text to the buyer*, because *I want to negotiate the price with the buyer*, when *the buyer wants to buy bulk or needs a customized item*.
-
-
+- As a user, *I want to see most recent(stretch: show featured) cars*, because *there may be good deals*, when *I am on my main feed*.
+- As a user, *I want to filter cars by price*, because *I have budget constraints*.
+- (stretch)As a user, *I want to favourite cars and check on them later*, because *I am not done shopping yet*.
+- As a user, *I want to send a message to the owner of the car listing*, because *I want to buy the car or negotiate*.
+- As an user, *I want to post cars*, because *I want to sell them*.
+- As an user, *I want to remove cars from the site*, because *the car is no longer available for sale*.
+- As an user, *I want to mark cars as 'SOLD!'*, because *the car has been sold and is not longer available*.
+- (similar to line 32)As an user, *I want to send a message via app(stretch: email or text also) to the buyer*, because *I want to negotiate the price with the buyer*.
 
 ---
 
 ## **ERD**
 
 Nouns/keywords from stories/scenarios:
-- user -> TABLE users
-- admin -> TABLE userLevels
-- buyer -> TABLE userLevels
-- seller -> TABLE userLevels
-- item - TABLE items
-- price -> in items table
-- message -> TABLE messages
-- availability of item -> in items table
-- user/buyer contact details -> in users table
+- users -> TABLE users
+- cars - TABLE cars
+- messages -> TABLE messages: FK-conversation_id, created_time
+- conversation -> TABLE conversations: FK-buyer, FK-seller
+
