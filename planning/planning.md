@@ -42,6 +42,13 @@ Description:
 Nouns/keywords from stories/scenarios:
 - users -> TABLE users
 - cars - TABLE cars
-- messages -> TABLE messages: FK-conversation_id, created_time
-- conversation -> TABLE conversations: FK-buyer, FK-seller
+- messages -> TABLE messages
+- conversation -> TABLE conversations
+ERD.drawio file contains ERD.
+
+---
+
+## **Routes**
+
+RESTful routes for BREAD 
 
