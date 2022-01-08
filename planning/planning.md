@@ -41,12 +41,12 @@ Description:
 ## **ERD**
 
 Nouns/keywords from stories/scenarios:
-- user
-- admin
-- buyer
-- seller
-- item
-- price
-- message
-- availability of item
-- user/buyer contact details
+- user -> TABLE users
+- admin -> TABLE userLevels
+- buyer -> TABLE userLevels
+- seller -> TABLE userLevels
+- item - TABLE items
+- price -> in items table
+- message -> TABLE messages
+- availability of item -> in items table
+- user/buyer contact details -> in users table
