@@ -7,16 +7,16 @@
 
 const express = require('express');
 const router  = express.Router();
-// const carQueries = require('../db/queries/car-queries')
+const userQueries = require('../db/queries/sample-users-query');
 
 module.exports = (db) => {
 
   // Route: "/cars/"
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    userQueries.getUsers()
       .then(data => {
         const cars = data.rows;
-        res.json({ cars });
+        res.json({ data });
       })
       .catch(err => {
         res

@@ -1,5 +1,5 @@
 const { response } = require('express')
-const db = require('../lib/db')
+const db = require('../../lib/db')
 
 const getUsers = () => {
   return db.query('SELECT * FROM users;')

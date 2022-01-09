@@ -7,7 +7,7 @@
 
 const express = require('express');
 const router  = express.Router();
-const userQueries = require('../db/sample-users-query');
+const userQueries = require('../db/queries/sample-users-query');
 
 module.exports = () => {
   router.get("/", (req, res) => {

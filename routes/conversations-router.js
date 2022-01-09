@@ -7,13 +7,14 @@
 
 const express = require('express');
 const router  = express.Router();
+const userQueries = require('../db/queries/sample-users-query');
 
-module.exports = (db) => {
+module.exports = () => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    userQueries.getUsers()
       .then(data => {
         const conversations = data.rows;
-        res.json({ conversations });
+        res.json({ data });
       })
       .catch(err => {
         res
