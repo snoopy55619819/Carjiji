@@ -9,9 +9,9 @@ CREATE TABLE cars (
   car_model VARCHAR(255) NOT NULL,
   car_year SMALLINT NOT NULL,
   description TEXT,
-  listing_price SMALLINT NOT NULL,
+  listing_price SMALLINT NOT NULL DEFAULT 0,
   car_photo_url VARCHAR(255) NOT NULL,
-  is_sold BOOLEAN DEFAUL FALSE
+  is_sold BOOLEAN DEFAULT FALSE
 );
 
 
