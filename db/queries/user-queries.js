@@ -1,9 +1,9 @@
 const { response } = require('express')
 const db = require('../lib/db')
 
-const getAllCars = () => {
+const getAllUsers = () => {
   /*
-  SELECT * FROM cars
+  SELECT * FROM users
   */
   return db.query('SELECT * FROM users;')
     .then((res) => {
@@ -12,7 +12,7 @@ const getAllCars = () => {
     .catch(err => err.message);
 };
 
-const getCarByCarId = (car_id) => {
+const getUserById = (user_id) => {
   /*
   (`
   SELECT * FROM cars
@@ -44,7 +44,7 @@ const getCarsForUser = (user_id) => {
 };
 
 modules.exports = {
-  getAllCars,
-  getCarByCarId,
+  getAllUsers,
+  getUserById,
   getCarsForUser
 };

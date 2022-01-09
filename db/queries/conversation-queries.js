@@ -1,9 +1,13 @@
 const { response } = require('express')
 const db = require('../lib/db')
 
-const getAllCars = () => {
+const getAllConversationIdsForUser = (user_id) => {
   /*
-  SELECT * FROM cars
+  (`
+  SELECT * FROM conversations
+  WHERE buyer_id = $1
+  OR seller_id = $1
+  `, [user_id])
   */
   return db.query('SELECT * FROM users;')
     .then((res) => {
@@ -12,12 +16,12 @@ const getAllCars = () => {
     .catch(err => err.message);
 };
 
-const getCarByCarId = (car_id) => {
+const getConversationById = (conversation_id) => {
   /*
   (`
-  SELECT * FROM cars
-  WHERE cars.id = $1
-  `, [car_id])
+  SELECT * FROM cconversation
+  WHERE conversations.id = $1
+  `, [conversation_id])
   */
   return db.query(`SELECT * FROM users`, [car_id])
     .then((res) => {
@@ -26,12 +30,13 @@ const getCarByCarId = (car_id) => {
     .catch(err => err.message);
 };
 
-const getCarsForUser = (user_id) => {
+const getMessagesForConversation = (conversation_id) => {
   /*
   (`
-  SELECT * FROM cars
-  WHERE owner_id = $1
-  `, [user_id])
+  SELECT *
+  FROM messages
+  WHERE conversation_id = $1
+  `, [conversation_id])
   */
   return db.query(`
     SELECT *
@@ -44,7 +49,7 @@ const getCarsForUser = (user_id) => {
 };
 
 modules.exports = {
-  getAllCars,
-  getCarByCarId,
+  getAllUsers,
+  getUserById,
   getCarsForUser
 };
