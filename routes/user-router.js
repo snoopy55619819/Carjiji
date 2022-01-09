@@ -41,7 +41,7 @@ module.exports = () => {
 
   // POST Route: "/user/:id"
   //  Edit account info
-  router.post("/listings", (req, res) => {
+  router.post("/:id", (req, res) => {
     userQueries.getUsers()
       .then(users => {
         res.json({ users });
