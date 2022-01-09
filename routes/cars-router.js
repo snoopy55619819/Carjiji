@@ -9,7 +9,7 @@ const express = require('express');
 const router  = express.Router();
 const userQueries = require('../db/queries/sample-users-query');
 
-module.exports = (db) => {
+module.exports = () => {
 
   // GET Route: "/cars/"
   //  Show all cars
@@ -42,7 +42,7 @@ module.exports = (db) => {
 
   // POST Route: "/cars/:id"
   //  Edit car posting details
-  router.post("/", (req, res) => {
+  router.post("/:id", (req, res) => {
     db.query(`SELECT * FROM users;`)
       .then(data => {
         const cars = data.rows;
@@ -57,7 +57,7 @@ module.exports = (db) => {
 
   // POST Route: "/cars/new"
   //  Add new car posting
-  router.post("/", (req, res) => {
+  router.post("/new", (req, res) => {
     db.query(`SELECT * FROM users;`)
       .then(data => {
         const cars = data.rows;
@@ -72,7 +72,7 @@ module.exports = (db) => {
 
   // POST Route: "/cars/:id/delete"
   //  Delete a car posting
-  router.post("/", (req, res) => {
+  router.post("/:id/delete", (req, res) => {
     db.query(`SELECT * FROM users;`)
       .then(data => {
         const cars = data.rows;

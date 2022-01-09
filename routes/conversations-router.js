@@ -10,11 +10,13 @@ const router  = express.Router();
 const userQueries = require('../db/queries/sample-users-query');
 
 module.exports = () => {
+
+  // GET Route: "/conversations"
+  //  Show all conversations
   router.get("/", (req, res) => {
     userQueries.getUsers()
-      .then(data => {
-        const conversations = data.rows;
-        res.json({ data });
+      .then(conversations => {
+        res.json({ conversations });
       })
       .catch(err => {
         res
@@ -22,5 +24,48 @@ module.exports = () => {
           .json({ error: err.message });
       });
   });
+
+  // POST Route: "/conversations/:id"
+  //  Reply to a conversation
+  router.post("/:id", (req, res) => {
+    userQueries.getUsers()
+      .then(conversations => {
+        res.json({ conversations });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  // POST Route: "/conversations"
+  //  Start a new conversation
+  router.post("/", (req, res) => {
+    userQueries.getUsers()
+      .then(conversations => {
+        res.json({ conversations });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  // POST Route: "/conversations/:id/delete"
+  //  Delete a conversation
+  router.post("/:id/delete", (req, res) => {
+    userQueries.getUsers()
+      .then(conversations => {
+        res.json({ conversations });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
   return router;
 };
