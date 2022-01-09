@@ -11,12 +11,12 @@ const userQueries = require('../db/queries/sample-users-query');
 
 module.exports = (db) => {
 
-  // Route: "/cars/"
+  // GET Route: "/cars/"
+  //  Show all cars
   router.get("/", (req, res) => {
     userQueries.getUsers()
-      .then(data => {
-        const cars = data.rows;
-        res.json({ data });
+      .then(cars => {
+        res.json({ cars });
       })
       .catch(err => {
         res
@@ -25,7 +25,8 @@ module.exports = (db) => {
       });
   });
 
-  // Route: "/cars/:id"
+  // GET Route: "/cars/:id"
+  //  Individual car details
   router.get("/:id", (req, res) => {
     db.query(`SELECT * FROM users;`)
       .then(data => {
@@ -39,7 +40,9 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/", (req, res) => {
+  // POST Route: "/cars/:id"
+  //  Edit car posting details
+  router.post("/", (req, res) => {
     db.query(`SELECT * FROM users;`)
       .then(data => {
         const cars = data.rows;
@@ -51,5 +54,36 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  // POST Route: "/cars/new"
+  //  Add new car posting
+  router.post("/", (req, res) => {
+    db.query(`SELECT * FROM users;`)
+      .then(data => {
+        const cars = data.rows;
+        res.json({ cars });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  // POST Route: "/cars/:id/delete"
+  //  Delete a car posting
+  router.post("/", (req, res) => {
+    db.query(`SELECT * FROM users;`)
+      .then(data => {
+        const cars = data.rows;
+        res.json({ cars });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
   return router;
 };
