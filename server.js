@@ -1,6 +1,10 @@
 // load .env data into process.env
 require("dotenv").config();
 
+// Require cookie-parser
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+
 // Web server config
 const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
@@ -23,9 +27,19 @@ app.use(
     destination: __dirname + "/public/styles",
     isSass: false, // false => scss, true => sass
   })
-);
+  );
 
-app.use(express.static("public"));
+  app.use(express.static("public"));
+
+  // Load cookie-parser and session.
+  app.use(cookieParser())
+  app.use(
+    session({
+        resave: false,
+        saveUninitialized: true,
+        secret: "anyrandomstring",
+      })
+    );
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -46,8 +60,23 @@ app.use("/about", aboutPageRoutes());
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  // res.redirect('/cars');
-  res.render("index");
+  res.redirect('/cars');
+  // res.render("index");
+});
+
+
+// Implement Login/Register fuctions later.
+// Do this instead for now:
+// use 'req.cookies.user_id' later to access logged in user.
+app.get('/login/:id', (req, res) => {
+  // cookie-session middleware
+  req.session.user_id = req.params.id;
+
+  // cookie-parser middleware
+  res.cookie('user_id', req.params.id);
+
+  // send the user somewhere
+  res.redirect('/');
 });
 
 app.listen(PORT, () => {
