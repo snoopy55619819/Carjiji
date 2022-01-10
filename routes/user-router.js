@@ -20,7 +20,9 @@ module.exports = () => {
 
     userQueries.getUserById(loggedInUserId)
       .then(user => {
-        res.json({ user });
+        const templateVars = { user };
+        res.render("user", templateVars);
+        // res.json({ user });
       })
       .catch(err => {
         res
