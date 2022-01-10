@@ -22,6 +22,17 @@ const getUserById = (user_id) => {
     .catch(err => err.message);
 };
 
+const updateUserInfo = (user_id) => {
+
+  return db.query(`
+    SELECT * FROM users
+    WHERE users.id = $1
+  `, [user_id])
+    .then((res) => {
+      return res.rows[0];
+    })
+    .catch(err => err.message);
+};
 
 module.exports = {
   getAllUsers,

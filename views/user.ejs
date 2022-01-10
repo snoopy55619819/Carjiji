@@ -5,6 +5,7 @@
   <title>User Account</title>
   <link rel="stylesheet" href="/styles/user.css">
 </head>
+
 <body>
   NAV BAR HERE
   <section class='account_info'>
@@ -16,21 +17,21 @@
       <div class='acc_info_element'>
         Name: <%= user.name %>
         <form>
-            <input type="text" name="user_name" style="width: 200px; margin: 1em">
+            <input type="text" name="user_name" value="<%= user.name%>">
             <button type="submit" class="btn btn-primary">Update name</button>
         </form>
       </div>
       <div class='acc_info_element'>
         Email: <%= user.email %>
         <form>
-          <input type="text" name="user_email" style="width: 200px; margin: 1em">
+          <input type="text" name="user_email" value="<%= user.email%>">
           <button type="submit" class="btn btn-primary">Update email</button>
       </form>
       </div>
       <div class='acc_info_element'>
         Phone: <%= user.phone %>
         <form>
-          <input type="text" name="user_phone" style="width: 200px; margin: 1em">
+          <input type="text" name="user_phone" value="<%= user.phone%>">
           <button type="submit" class="btn btn-primary">Update phone</button>
       </form>
       </div>
