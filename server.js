@@ -36,7 +36,7 @@ const aboutPageRoutes = require("./routes/about");
 
 // Mount all resource routes
 app.use("/cars", carsRoutes());
-app.use("/users", usersRoutes());
+app.use("/user", usersRoutes());
 app.use("/conversations", conversationsRoutes());
 app.use("/about", aboutPageRoutes());
 // Note: mount other resources here, using the same pattern above
