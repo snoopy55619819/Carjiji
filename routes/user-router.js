@@ -7,14 +7,15 @@
 
 const express = require('express');
 const router  = express.Router();
-const userQueries = require('../db/queries/sample-users-query');
+const userQueries = require('../db/queries/user-queries');
+const carQueries = require('../db/queries/car-queries');
 
 module.exports = () => {
 
   // GET Route: "/user/"
   //  Show user account info
   router.get("/", (req, res) => {
-    userQueries.getUsers()
+    userQueries.getAllUsers()
       .then(users => {
         res.json({ users });
       })
@@ -28,9 +29,9 @@ module.exports = () => {
   // GET Route: "/user/listings"
   //  Show user listings
   router.get("/listings", (req, res) => {
-    userQueries.getUsers()
-      .then(users => {
-        res.json({ users });
+    carQueries.getCarsForUser(1)
+      .then(cars => {
+        res.json({ cars });
       })
       .catch(err => {
         res
@@ -42,7 +43,7 @@ module.exports = () => {
   // POST Route: "/user/:id"
   //  Edit account info
   router.post("/:id", (req, res) => {
-    userQueries.getUsers()
+    userQueries.getUserById()
       .then(users => {
         res.json({ users });
       })
