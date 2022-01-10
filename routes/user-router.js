@@ -15,9 +15,12 @@ module.exports = () => {
   // GET Route: "/user/"
   //  Show user account info
   router.get("/", (req, res) => {
-    userQueries.getAllUsers()
-      .then(users => {
-        res.json({ users });
+    // Get logged in user from cookies
+    const loggedInUserId = req.cookies.user_id;
+
+    userQueries.getUserById(loggedInUserId)
+      .then(user => {
+        res.json({ user });
       })
       .catch(err => {
         res
@@ -29,7 +32,9 @@ module.exports = () => {
   // GET Route: "/user/listings"
   //  Show user listings
   router.get("/listings", (req, res) => {
-    carQueries.getCarsForUser(1)
+    const loggedInUserId = req.cookies.user_id;
+
+    carQueries.getCarsForUser(loggedInUserId)
       .then(cars => {
         res.json({ cars });
       })
