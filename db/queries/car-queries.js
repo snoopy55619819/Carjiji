@@ -1,11 +1,9 @@
 const { response } = require('express')
-const db = require('../lib/db')
+const db = require('../../lib/db')
 
 const getAllCars = () => {
-  /*
-  SELECT * FROM cars
-  */
-  return db.query('SELECT * FROM users;')
+
+  return db.query('SELECT * FROM cars;')
     .then((res) => {
       return res.rows;
     })
@@ -13,13 +11,11 @@ const getAllCars = () => {
 };
 
 const getCarByCarId = (car_id) => {
-  /*
-  (`
-  SELECT * FROM cars
-  WHERE cars.id = $1
+
+  return db.query(`
+    SELECT * FROM cars
+    WHERE cars.id = $1
   `, [car_id])
-  */
-  return db.query(`SELECT * FROM users`, [car_id])
     .then((res) => {
       return res.rows[0];
     })
@@ -27,15 +23,10 @@ const getCarByCarId = (car_id) => {
 };
 
 const getCarsForUser = (user_id) => {
-  /*
-  (`
-  SELECT * FROM cars
-  WHERE owner_id = $1
-  `, [user_id])
-  */
+
   return db.query(`
-    SELECT *
-    FROM users
+    SELECT * FROM cars
+    WHERE owner_id = $1
   `, [user_id])
     .then((res) => {
       return res.rows;
@@ -43,7 +34,7 @@ const getCarsForUser = (user_id) => {
     .catch(err => err.message);
 };
 
-modules.exports = {
+module.exports = {
   getAllCars,
   getCarByCarId,
   getCarsForUser
