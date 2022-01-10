@@ -5,30 +5,30 @@
   <title>User Account</title>
   <link rel="stylesheet" href="/styles/user.css">
 </head>
-
 <body>
-  <section class='account'>
-    <h1>Account info: 🥔</h1>
+  NAV BAR HERE
+  <section class='account_info'>
+    <h1 class='account_heading'>Account info: 🥔</h1>
     <% if (user) { %>
-      <div>
-        User id: <%= user.id %><br>
+      <div class='acc_info_id'>
+        User id: <%= user.id %>
       </div>
-      <div>
-        Name: <%= user.name %><br>
+      <div class='acc_info_element'>
+        Name: <%= user.name %>
         <form>
             <input type="text" name="user_name" style="width: 200px; margin: 1em">
             <button type="submit" class="btn btn-primary">Update name</button>
         </form>
       </div>
-      <div>
-        Email: <%= user.email %><br>
+      <div class='acc_info_element'>
+        Email: <%= user.email %>
         <form>
           <input type="text" name="user_email" style="width: 200px; margin: 1em">
           <button type="submit" class="btn btn-primary">Update email</button>
       </form>
       </div>
-      <div>
-        Phone: <%= user.phone %><br>
+      <div class='acc_info_element'>
+        Phone: <%= user.phone %>
         <form>
           <input type="text" name="user_phone" style="width: 200px; margin: 1em">
           <button type="submit" class="btn btn-primary">Update phone</button>

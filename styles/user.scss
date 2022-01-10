@@ -1,8 +1,37 @@
-$primary-color: blue;
+$primary-color: black;
 
-.account {
+.account_info {
+  outline: $primary-color;
+  outline-style: dashed;
+  outline-width: 1px;
+
+  font-family: Montserrat;
+  font-size: 24px;
+  line-height: 36px;
+
   color: $primary-color;
+
+  padding: 1em;
+  margin: 1em 2em 0 2em;
+
+  display: flex;
+  flex-flow: row wrap;
+
+  h1 {
+    width: 100%;
+    margin-top: 0;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 72px;
+  }
+  .acc_info_id {
+    width: 50%;
+  }
+  .acc_info_element {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 }
-
-
 
