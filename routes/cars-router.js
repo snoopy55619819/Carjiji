@@ -7,14 +7,14 @@
 
 const express = require('express');
 const router  = express.Router();
-const userQueries = require('../db/queries/sample-users-query');
+const carQueries = require('../db/queries/car-queries');
 
 module.exports = () => {
 
   // GET Route: "/cars/"
   //  Show all cars
   router.get("/", (req, res) => {
-    userQueries.getUsers()
+    carQueries.getAllCars()
       .then(cars => {
         res.json({ cars });
       })
@@ -28,10 +28,9 @@ module.exports = () => {
   // GET Route: "/cars/:id"
   //  Individual car details
   router.get("/:id", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const cars = data.rows;
-        res.json({ cars });
+    carQueries.getCarByCarId(req.params.id)
+      .then(car => {
+        res.json({ car });
       })
       .catch(err => {
         res
