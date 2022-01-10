@@ -15,7 +15,8 @@ module.exports = () => {
 
   // GET Route: "/conversations"
   //  Show all conversations
-  /* Output rendered to page as .json:
+  /*  Output rendered to page as .json:
+    ***
     {
       convWithMessages: [
         {
@@ -30,20 +31,23 @@ module.exports = () => {
         {Conversation_ID: 3, ...}
       ]
     }
+    ***
   */
   router.get("/", (req, res) => {
-    conversationQueries.getAllConversationsForUser(1)
-    // Returns an array of conversations which is passed onto the next .then()
-    .then(conversations => {
-      return conversations
-    })
+    // Get logged in user from cookies
+    const loggedInUserId = req.cookies.user_id;
+
+    conversationQueries.getAllConversationsForUser(loggedInUserId)
+    // Returns an array of conversations which is passed onto the .then()
     // Since async code in within this .then(), used async-await to run this code syncronously.
     //  Take in an object of conversations -> query for messages with conversation_id
     //  -> add the messages into corresponding conversation
     .then(async conversations => {
         const convWithMessages = [];
+
         for (conv of conversations) {
           const convID = conv.Conversation_ID;
+
           await conversationQueries.getMessagesForConversation(convID)
           .then((messages) => {
             conv.messages = messages;
@@ -59,6 +63,7 @@ module.exports = () => {
       });
   });
 
+  // TO-DO
   // POST Route: "/conversations/:id"
   //  Reply to a conversation
   router.post("/:id", (req, res) => {
@@ -73,6 +78,7 @@ module.exports = () => {
       });
   });
 
+  // TO-DO
   // POST Route: "/conversations"
   //  Start a new conversation
   router.post("/", (req, res) => {
@@ -87,6 +93,7 @@ module.exports = () => {
       });
   });
 
+  // TO-DO
   // POST Route: "/conversations/:id/delete"
   //  Delete a conversation
   router.post("/:id/delete", (req, res) => {
