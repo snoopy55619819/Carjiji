@@ -22,8 +22,23 @@ const getUserById = (user_id) => {
     .catch(err => err.message);
 };
 
+const updateUserInfo = (userID, field, updatedValue) => {
+  const updateUserQuery = `
+  UPDATE users
+  SET ${field} = '${updatedValue}'
+  WHERE users.id = ${userID}
+  RETURNING *
+  `;
+
+  return db.query(updateUserQuery)
+    .then((res) => {
+      return res.rows[0];
+    })
+    .catch(err => err.message);
+};
 
 module.exports = {
   getAllUsers,
-  getUserById
+  getUserById,
+  updateUserInfo
 };

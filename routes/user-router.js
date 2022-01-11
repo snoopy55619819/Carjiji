@@ -20,7 +20,9 @@ module.exports = () => {
 
     userQueries.getUserById(loggedInUserId)
       .then(user => {
-        res.json({ user });
+        const templateVars = { user };
+        res.render("user", templateVars);
+        // res.json({ user });
       })
       .catch(err => {
         res
@@ -47,10 +49,17 @@ module.exports = () => {
 
   // POST Route: "/user/:id"
   //  Edit account info
-  router.post("/:id", (req, res) => {
-    userQueries.getUserById()
-      .then(users => {
-        res.json({ users });
+  router.post("/", (req, res) => {
+    const loggedInUserId = Number(req.cookies.user_id);
+    const field = String(Object.keys(req.body)[0]);
+    const updatedValue = Object.values(req.body)[0];
+
+    console.log(typeof loggedInUserId, typeof field, typeof updatedValue);
+    userQueries.updateUserInfo(loggedInUserId, field, updatedValue)
+      .then(user => {
+        console.log(user);
+        res.redirect('/user');
+        // console.log(req);
       })
       .catch(err => {
         res
