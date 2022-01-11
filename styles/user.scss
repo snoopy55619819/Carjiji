@@ -2,12 +2,11 @@ $primary-color: black;
 
 .account_info {
   outline: $primary-color;
-  outline-style: dashed;
+  outline-style:double;
   outline-width: 1px;
 
   font-family: Montserrat;
-  font-size: 24px;
-  line-height: 36px;
+
 
   color: $primary-color;
 
@@ -16,13 +15,14 @@ $primary-color: black;
 
   display: flex;
   flex-flow: row wrap;
+  align-items: center;
 
   h1 {
     width: 100%;
     margin-top: 0;
     font-weight: normal;
-    font-size: 48px;
-    line-height: 72px;
+    font-size: 24px;
+    line-height: 36px;
   }
   .acc_info_id {
     width: 50%;
@@ -31,7 +31,7 @@ $primary-color: black;
     width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    padding: 1em 0 1em 0;
   }
 }
 

@@ -22,12 +22,15 @@ const getUserById = (user_id) => {
     .catch(err => err.message);
 };
 
-const updateUserInfo = (user_id) => {
+const updateUserInfo = (userID, field, updatedValue) => {
+  const updateUserQuery = `
+  UPDATE users
+  SET ${field} = '${updatedValue}'
+  WHERE users.id = ${userID}
+  RETURNING *
+  `;
 
-  return db.query(`
-    SELECT * FROM users
-    WHERE users.id = $1
-  `, [user_id])
+  return db.query(updateUserQuery)
     .then((res) => {
       return res.rows[0];
     })
@@ -36,5 +39,6 @@ const updateUserInfo = (user_id) => {
 
 module.exports = {
   getAllUsers,
-  getUserById
+  getUserById,
+  updateUserInfo
 };
