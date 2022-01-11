@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Home Page</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="/styles/main.css" type="text/css" /> -->
+    <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+    <link rel="stylesheet" href="/styles/cars.css" type="text/css" />
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search for Cars" aria-label="Search">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+
+      <div class="row">
+        <div class="col">
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Select a Make</option>
+            <option value="Acura">Acura</option>
+            <option value="GMC">GMC</option>
+            <option value="Ford">Ford</option>
+          </select>
+        </div>
+        <div class="col">
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Select a Model</option>
+            <option value="RDX">RDX</option>
+            <option value="Sierra 1500">Sierra 1500</option>
+            <option value="Escape">Escape</option>
+          </select>
+        </div>
+        <div class="col">
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Select a Year</option>
+            <option value="2019">2019</option>
+            <option value="1981">1981</option>
+            <option value="2009">2009</option>
+          </select>
+        </div>
+        <div class="col">
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Select a Price Range</option>
+            <option value="&lt; 50000">&lt; 50000</option>
+            <option value="&gt; 50000 &lt; 100000">&gt; 50000 &lt; 100000</option>
+            <option value="&gt; 100000 &lt; 200000">&gt; 100000 &lt; 200000</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container">
+      <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3">
+        <div class="col">
+          <div class="p-3 border bg-light">
+            <figure class="figure">
+              <img src="images/2019-Acura-RDX.jpg" class="figure-img img-fluid rounded" alt="...">
+              <figcaption class="figure-caption">2019 Acura RDX<br>Price: $60000</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="col">
+          <div class="p-3 border bg-light">
+            <figure class="figure">
+              <img src="images/1981-GMC-Sierra-1500.jpg" class="figure-img img-fluid rounded" alt="...">
+              <figcaption class="figure-caption">1982 GMC Sierra 1500<br>Price: $10000</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="col">
+          <div class="p-3 border bg-light">
+            <figure class="figure">
+              <img src="images/2009-ford-escape.jpg" class="figure-img img-fluid rounded" alt="...">
+              <figcaption class="figure-caption">2009 Ford Escape<br>Price: $30000</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="col">
+          <div class="p-3 border bg-light">
+            <figure class="figure">
+              <img src="images/2019-Acura-RDX.jpg" class="figure-img img-fluid rounded" alt="...">
+              <figcaption class="figure-caption">2019 Acura RDX<br>Price: $60000</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="col">
+          <div class="p-3 border bg-light">
+            <figure class="figure">
+              <img src="images/1981-GMC-Sierra-1500.jpg" class="figure-img img-fluid rounded" alt="...">
+              <figcaption class="figure-caption">1982 GMC Sierra 1500<br>Price: $10000</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="col">
+          <div class="p-3 border bg-light">
+            <figure class="figure">
+              <img src="images/2009-ford-escape.jpg" class="figure-img img-fluid rounded" alt="...">
+              <figcaption class="figure-caption">2009 Ford Escape<br>Price: $30000</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
+  </body>
+
+</html>
