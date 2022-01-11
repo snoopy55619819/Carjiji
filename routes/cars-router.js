@@ -16,7 +16,8 @@ module.exports = () => {
   router.get("/", (req, res) => {
     carQueries.getAllCars()
       .then(cars => {
-        res.json({ cars });
+        // res.json({ cars });
+        res.render('cars', {cars});
       })
       .catch(err => {
         res
