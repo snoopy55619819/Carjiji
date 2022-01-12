@@ -2,11 +2,7 @@
 $(() => {
   console.log('jquery ready');
 
-//card-with-details
-//card-with-edits
-//edit-car-toggle -> button
-//edit-car-toggle-cancel -> cancel button
-
+  //Hide/show edit card script
   const $divWithDetails = document.getElementById("card-with-details");
   const $divWithEdits = document.getElementById("card-with-edits");
 
@@ -31,34 +27,16 @@ $(() => {
     $( $divWithDetails ).show( "slow" );
   });
 
+  // Preview/update image for car script
+  const $divWithImageInput = document.getElementById("imageInputBox");
+  const $divWithImagePreview = document.getElementById("carImagePreview");
+  const $divWithCarURLValue = document.getElementById("carURLInputValue");
 
-
-
-
-
-  // const $targetDiv = document.getElementById("newDIV");
-  // const $btn = document.getElementById("show-New");
-
-  // const $targetDiv2 = document.getElementById("editDIV");
-  // const $btn2 = document.getElementById("show-Edit");
-
-  // $(function () {
-  //   $( $targetDiv ).hide();
-  //   $( $btn2 ).hide();
-  // });
-
-  // $( $btn ).click(function() {
-  //   $( $btn ).hide();
-  //   $( $btn2 ).show();
-  //   $( $targetDiv ).show( "slow" );
-  //   $( $targetDiv2 ).hide();
-  // });
-
-  // $( $btn2 ).click(function() {
-  //   $( $btn ).show();
-  //   $( $btn2 ).hide();
-  //   $( $targetDiv ).hide();
-  //   $( $targetDiv2 ).show( "slow" );
-  // });
+  $( $divWithImageInput ).change(function() {
+    console.log('changed away from url box');
+    let imageURL = $( $divWithCarURLValue ).val();
+    console.log(typeof imageURL);
+    $divWithImagePreview.src = imageURL;
+  });
 
 });
