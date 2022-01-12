@@ -38,10 +38,14 @@
 
     <title>Single Car Features</title>
   </head>
+
+
   <body>
+    <%- include('partials/_header') %>
+    <!-- <button type="submit" class="btn btn-outline-info" id="edit-car-toggle">Edit listing</button> -->
     <main>
       <!-- Cards Horizontal -->
-      <div class="card border-secondary mb-3">
+      <div class="card border-secondary mb-3" id="card-with-details">
         <div class="row g-0">
           <div class="col-md-6">
             <div class="card-body">
@@ -127,20 +131,80 @@
               </button>
             </form>
           </div>
+          <% if(userObj.id === car.owner_id || userObj.is_admin){ %>
+          <button type="submit" class="btn btn-outline-info" id="edit-car-toggle">Edit listing</button>
+          <% } %>
         </div>
       </div>
 
-      <!-- Optional JavaScript; choose one of the two! -->
+    <% if(userObj.id === car.owner_id || userObj.is_admin){ %>
+<!-- Cards Horizontal - Edit form -->
+    <div id="card-with-edits">
+      <div class="card border-secondary mb-3">
+        <div class="row g-0">
+          <div class="col-md-6">
+            <div class="card-body">
+              <img
+                src="<%= car.car_photo_url %>"
+                class="img-fluid rounded"
+                alt="Upload new/valid url"
+                id="carImagePreview"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card-body">
+              <h5 class="card-title">
+                Edit car info
+              </h5>
+            <!-- Forms -->
+              <form class="new_listing_form" action="/cars/new" method="POST">
 
-      <!-- Option 1: Bootstrap Bundle with Popper -->
-      <!-- <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"
-      ></script> -->
-    </main>
+                <div class="input-group mb-3 car_form_element">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Car model</span>
+                  <input type="text" name="car_model" class="form-control" value="<%= car.car_model %>"/>
+                </div>
 
-    <!--  Javascript -->
-    <script type="text/javascript" src="/scripts/app.js"></script>
+                <div class="input-group mb-3 car_form_element">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Car make</span>
+                  <input type="text" name="car_make" class="form-control" value="<%= car.car_make %>"/>
+                </div>
+
+                <div class="input-group mb-3 car_form_element">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Car year</span>
+                  <input type="text" name="car_year" class="form-control" value="<%= car.car_year %>" />
+                </div>
+
+                <div class="input-group mb-3 car_form_element" >
+                  <span class="input-group-text border-0">Listing price($)</span>
+                  <input type="text" name="listing_price" class="form-control rounded" aria-label="Amount (to the nearest dollar)" value="<%= car.listing_price/100 %>"/>
+                  <span class="input-group-text border-0">.00</span>
+                </div>
+
+                <div class="input-group mb-3 car_form_photo_element" id="imageInputBox">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Add photo url</span>
+                  <input type="text" class="form-control" id="carURLInputValue" value="<%= car.car_photo_url %>"/>
+                </div>
+
+                <div class="input-group mb-3 car_form_description_element">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
+                  <textarea class="form-control" id="textAreaExample" rows="4" ><%= car.description %></textarea>
+                </div>
+                <div class="car_form_button">
+                  <button type="submit" class="btn btn-outline-info">Update listing</button>
+                  <button type="submit" class="btn btn-outline-info" id="edit-car-toggle-cancel">Cancel</button>
+                  <button type="submit" class="btn btn-outline-dark" data-mdb-ripple-color="dark" style="color: red;">Delete Posting</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+</main>
   </body>
+
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
 </html>
