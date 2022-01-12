@@ -48,7 +48,9 @@ module.exports = () => {
   router.get("/:id", (req, res) => {
     carQueries.getCarByCarId(req.params.id)
       .then(car => {
-        res.json({ car });
+        const loggedInUserId = Number(req.cookies.user_id);
+        // console.log(typeof loggedInUserId, typeof car.owner_id);
+        res.render('single-car.ejs', {car, loggedInUserId});
       })
       .catch(err => {
         res
