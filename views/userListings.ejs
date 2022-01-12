@@ -17,11 +17,70 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
   <!-- App CSS -->
+  <link rel="stylesheet" href="/styles/userListings.css" type="text/css" />
 
 </head>
 
 <body>
   <%- include('partials/_header') %>
+  <section>
+    Open listings
+    <div class="card border-secondary mb-3" id="card-with-details">
+      <div class="row g-0">
+        <div class="col-md-6">
+          <div class="card-body">
+            <img
+              src="<%= car.car_photo_url %>"
+              class="img-fluid rounded"
+              alt="image for car"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card-body">
+            <h5 class="card-title">
+              Card title : <%= car.car_make %> <%= car.car_year %>
+            </h5>
+            <!-- Tables without border-->
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <th scope="row">
+                    <i class="fa-regular fa-calendar-days"></i> Year:
+                  </th>
+                  <td><%= car.car_year %></td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="fa-regular fa-map"></i> Make:</th>
+                  <td><%= car.car_make %></td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <i class="fa-regular fa-life-ring"></i> Model:
+                  </th>
+                  <td><%= car.car_model %></td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <i class="fa-duotone fa-dollar-sign"></i> Price:
+                  </th>
+                  <td>$<%= car.listing_price/100 %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <section>
+    Closed listings
+  </section>
+
+
 
 </body>
 
