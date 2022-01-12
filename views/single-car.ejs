@@ -118,7 +118,8 @@
               <img
                 src="<%= car.car_photo_url %>"
                 class="img-fluid rounded"
-                alt="image for car"
+                alt="Upload new/valid url"
+                id="carImagePreview"
               />
             </div>
           </div>
@@ -151,9 +152,9 @@
                   <span class="input-group-text border-0">.00</span>
                 </div>
 
-                <div class="input-group mb-3 car_form_photo_element">
+                <div class="input-group mb-3 car_form_photo_element" id="imageInputBox">
                   <span class="input-group-text" id="inputGroup-sizing-default">Add photo url</span>
-                  <input type="text" class="form-control" value="<%= car.car_photo_url %>"/>
+                  <input type="text" class="form-control" id="carURLInputValue" value="<%= car.car_photo_url %>"/>
                 </div>
 
                 <div class="input-group mb-3 car_form_description_element">
