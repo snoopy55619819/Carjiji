@@ -17,7 +17,8 @@ module.exports = () => {
   router.get("/", (req, res) => {
     carQueries.getAllCars()
       .then(cars => {
-        res.json({ cars });
+        // res.json({ cars });
+        res.render('cars', {cars});
       })
       .catch(err => {
         res
@@ -48,16 +49,17 @@ module.exports = () => {
   router.get("/:id", async (req, res) => {
     const loggedInUserId = req.cookies.user_id;
     let userObj;
+    // let ownerObj;
 
     await userQueries.getUserById(loggedInUserId)
       .then(user => {
         userObj = user;
       })
       .catch(err => err.message);
-    console.log('in between queries',userObj)
-    carQueries.getCarByCarId(req.params.id)
+
+    carQueries.getCarAndOwnerByCarId(req.params.id)
       .then(car => {
-        // console.log(typeof loggedInUserId, typeof car.owner_id);
+         console.log(car);
         res.render('single-car.ejs', {car, userObj});
       })
       .catch(err => {
@@ -65,6 +67,7 @@ module.exports = () => {
           .status(500)
           .json({ error: err.message });
       });
+
   });
 
   // POST Route: "/cars/u/:id"

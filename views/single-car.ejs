@@ -21,28 +21,14 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <!-- JQuery !!!! -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- App CSS added this 4 lines
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" /> -->
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
+    <!-- App CSS  -->
     <link rel="stylesheet" href="/styles/single-car.css" type="text/css" />
 
     <title>Single Car Features</title>
   </head>
 
-
   <body>
     <%- include('partials/_header') %>
-    <!-- <button type="submit" class="btn btn-outline-info" id="edit-car-toggle">Edit listing</button> -->
     <main>
       <!-- Cards Horizontal -->
       <div class="card border-secondary mb-3" id="card-with-details">
@@ -96,7 +82,11 @@
           </div>
           <div class="col-md-2">
             <!-- Forms -->
-              <form class="message-form" action="mailto:someone@example.com" method="POST"  >
+            <form
+              class="message-form"
+              action="mailto:<%= car.owner_email %>?subject=Mail%20From%20Cars%20WebSite&body=Is%20this%20car%20available"
+              method="POST"
+            >
               <div>
                 <h5>Contact Car Owner</h5>
               </div>
@@ -106,24 +96,13 @@
                     >Write your message to car owner.</small
                   >
                 </p>
-
-                <input
-                  type="email"
-                  name="email"
-                /><!-- use this to reply visitors and prevent spam via akismet -->
-                <input type="hidden" name="firstName" value="test1" />
-                <input type="hidden" name="lastName" value="test1" />
-                <input type="text" name="anotherInput" value="test1"/>
-                <input
-                  type="hidden"
-                  name="_gotcha"
-                /><!-- use this to prevent spam -->
-                <!-- <textarea
+                <!-- <input type="text" name="anotherInput" value="test1" /> -->
+                <textarea
                   class="form-control"
                   id="message-text"
                   placeholder="Your message"
                   name="message"
-                ></textarea> -->
+                ></textarea>
               </div>
               <br />
               <button type="submit" class="btn btn-outline-info">
@@ -132,79 +111,153 @@
             </form>
           </div>
           <% if(userObj.id === car.owner_id || userObj.is_admin){ %>
-          <button type="submit" class="btn btn-outline-info" id="edit-car-toggle">Edit listing</button>
+          <button
+            type="submit"
+            class="btn btn-outline-info"
+            id="edit-car-toggle"
+          >
+            Edit listing
+          </button>
           <% } %>
         </div>
       </div>
 
-    <% if(userObj.id === car.owner_id || userObj.is_admin){ %>
-<!-- Cards Horizontal - Edit form -->
-    <div id="card-with-edits">
-      <div class="card border-secondary mb-3">
-        <div class="row g-0">
-          <div class="col-md-6">
-            <div class="card-body">
-              <img
-                src="<%= car.car_photo_url %>"
-                class="img-fluid rounded"
-                alt="Upload new/valid url"
-                id="carImagePreview"
-              />
+      <% if(userObj.id === car.owner_id || userObj.is_admin){ %>
+      <!-- Cards Horizontal - Edit form -->
+      <div id="card-with-edits">
+        <div class="card border-secondary mb-3">
+          <div class="row g-0">
+            <div class="col-md-6">
+              <div class="card-body">
+                <img
+                  src="<%= car.car_photo_url %>"
+                  class="img-fluid rounded"
+                  alt="Upload new/valid url"
+                  id="carImagePreview"
+                />
+              </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card-body">
-              <h5 class="card-title">
-                Edit car info
-              </h5>
-            <!-- Forms -->
-              <form class="new_listing_form" action="/cars/new" method="POST">
+            <div class="col-md-6">
+              <div class="card-body">
+                <h5 class="card-title">Edit car info</h5>
+                <!-- Forms -->
+                <form class="new_listing_form" action="/cars/new" method="POST">
+                  <div class="input-group mb-3 car_form_element">
+                    <span
+                      class="input-group-text"
+                      id="inputGroup-sizing-default"
+                      >Car model</span
+                    >
+                    <input
+                      type="text"
+                      name="car_model"
+                      class="form-control"
+                      value="<%= car.car_model %>"
+                    />
+                  </div>
 
-                <div class="input-group mb-3 car_form_element">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Car model</span>
-                  <input type="text" name="car_model" class="form-control" value="<%= car.car_model %>"/>
-                </div>
+                  <div class="input-group mb-3 car_form_element">
+                    <span
+                      class="input-group-text"
+                      id="inputGroup-sizing-default"
+                      >Car make</span
+                    >
+                    <input
+                      type="text"
+                      name="car_make"
+                      class="form-control"
+                      value="<%= car.car_make %>"
+                    />
+                  </div>
 
-                <div class="input-group mb-3 car_form_element">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Car make</span>
-                  <input type="text" name="car_make" class="form-control" value="<%= car.car_make %>"/>
-                </div>
+                  <div class="input-group mb-3 car_form_element">
+                    <span
+                      class="input-group-text"
+                      id="inputGroup-sizing-default"
+                      >Car year</span
+                    >
+                    <input
+                      type="text"
+                      name="car_year"
+                      class="form-control"
+                      value="<%= car.car_year %>"
+                    />
+                  </div>
 
-                <div class="input-group mb-3 car_form_element">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Car year</span>
-                  <input type="text" name="car_year" class="form-control" value="<%= car.car_year %>" />
-                </div>
+                  <div class="input-group mb-3 car_form_element">
+                    <span class="input-group-text border-0"
+                      >Listing price($)</span
+                    >
+                    <input
+                      type="text"
+                      name="listing_price"
+                      class="form-control rounded"
+                      aria-label="Amount (to the nearest dollar)"
+                      value="<%= car.listing_price/100 %>"
+                    />
+                    <span class="input-group-text border-0">.00</span>
+                  </div>
 
-                <div class="input-group mb-3 car_form_element" >
-                  <span class="input-group-text border-0">Listing price($)</span>
-                  <input type="text" name="listing_price" class="form-control rounded" aria-label="Amount (to the nearest dollar)" value="<%= car.listing_price/100 %>"/>
-                  <span class="input-group-text border-0">.00</span>
-                </div>
+                  <div
+                    class="input-group mb-3 car_form_photo_element"
+                    id="imageInputBox"
+                  >
+                    <span
+                      class="input-group-text"
+                      id="inputGroup-sizing-default"
+                      >Add photo url</span
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="carURLInputValue"
+                      value="<%= car.car_photo_url %>"
+                    />
+                  </div>
 
-                <div class="input-group mb-3 car_form_photo_element" id="imageInputBox">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Add photo url</span>
-                  <input type="text" class="form-control" id="carURLInputValue" value="<%= car.car_photo_url %>"/>
-                </div>
-
-                <div class="input-group mb-3 car_form_description_element">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
-                  <textarea class="form-control" id="textAreaExample" rows="4" ><%= car.description %></textarea>
-                </div>
-                <div class="car_form_button">
-                  <button type="submit" class="btn btn-outline-info">Update listing</button>
-                  <button type="submit" class="btn btn-outline-info" id="edit-car-toggle-cancel">Cancel</button>
-                  <button type="submit" class="btn btn-outline-dark" data-mdb-ripple-color="dark" style="color: red;">Delete Posting</button>
-                </div>
-              </form>
+                  <div class="input-group mb-3 car_form_description_element">
+                    <span
+                      class="input-group-text"
+                      id="inputGroup-sizing-default"
+                      >Description</span
+                    >
+                    <textarea
+                      class="form-control"
+                      id="textAreaExample"
+                      rows="4"
+                    >
+<%= car.description %></textarea
+                    >
+                  </div>
+                  <div class="car_form_button">
+                    <button type="submit" class="btn btn-outline-info">
+                      Update listing
+                    </button>
+                    <button
+                      type="submit"
+                      class="btn btn-outline-info"
+                      id="edit-car-toggle-cancel"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      class="btn btn-outline-dark"
+                      data-mdb-ripple-color="dark"
+                      style="color: red"
+                    >
+                      Delete Posting
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <% } %>
-</main>
+      <% } %>
+    </main>
   </body>
 
   <script type="text/javascript" src="/scripts/app.js"></script>
-
 </html>
