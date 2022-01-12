@@ -27,6 +27,7 @@ const getCarsForUser = (user_id) => {
   return db.query(`
     SELECT * FROM cars
     WHERE owner_id = $1
+    ORDER BY id
   `, [user_id])
     .then((res) => {
       return res.rows;
@@ -82,10 +83,45 @@ const getCarAndOwnerByCarId = (car_id) => {
     .catch(err => err.message);
 };
 
+const makeCarSold = (car_id) => {
+  const updateCarStatusQuery = `
+  UPDATE cars
+  SET is_sold = 'TRUE'
+  WHERE cars.id = $1
+  RETURNING *
+  `;
+  // console.log('from cars query', car_id, updateCarStatusQuery);
+
+  return db.query(updateCarStatusQuery, [car_id])
+    .then((res) => {
+      return res.rows[0];
+    })
+    .catch(err => err.message);
+};
+
+const makeCarActive = (car_id) => {
+  const updateCarStatusQuery = `
+  UPDATE cars
+  SET is_sold = 'FALSE'
+  WHERE cars.id = $1
+  RETURNING *
+  `;
+  // console.log('from cars query', car_id, updateCarStatusQuery);
+
+  return db.query(updateCarStatusQuery, [car_id])
+    .then((res) => {
+      return res.rows[0];
+    })
+    .catch(err => err.message);
+};
+
+
 module.exports = {
   getAllCars,
   getCarByCarId,
   getCarsForUser,
   addCar,
-  getCarAndOwnerByCarId
+  getCarAndOwnerByCarId,
+  makeCarSold,
+  makeCarActive
 };
