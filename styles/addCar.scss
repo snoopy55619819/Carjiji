@@ -1,0 +1,67 @@
+$primary-color: black;
+$form-padding: 0 1em 0 1em;
+
+body {
+  width: 100%;
+}
+
+//whole listing section screen
+.new_listing_section {
+  display: flex;
+  flex-flow: row wrap;
+
+  //input section (with outlined border)
+  .new_listing_input {
+
+    width: 100%;
+    outline: $primary-color;
+    outline-style:double;
+    outline-width: 1px;
+
+    font-family: Montserrat;
+
+    padding: 1em;
+    margin: 1em 2em 0 2em;
+
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+
+    //heading
+    h1 {
+      width: 100%;
+      margin-top: 0;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 36px;
+      padding: $form-padding;
+    }
+
+    //entry form
+    .new_listing_form {
+      width: 100%;
+      display: flex;
+      flex-flow: row wrap;
+
+      //form elements
+      .car_form_element {
+        width: 50%;
+        padding: $form-padding;
+      }
+
+      .car_form_photo_element {
+        padding: $form-padding;
+      }
+
+      .car_form_description_element {
+        padding: $form-padding;
+      }
+
+      .car_form_button {
+        padding: $form-padding;
+      }
+
+    }
+
+  }
+}

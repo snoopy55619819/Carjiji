@@ -47,7 +47,7 @@ module.exports = () => {
 
         for (conv of conversations) {
           const convID = conv.Conversation_ID;
-
+          //change to avoid lots of queries.
           await conversationQueries.getMessagesForConversation(convID)
           .then((messages) => {
             conv.messages = messages;
