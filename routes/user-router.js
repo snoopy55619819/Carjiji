@@ -38,10 +38,10 @@ module.exports = () => {
 
     carQueries.getCarsForUser(loggedInUserId)
       .then(cars => {
-        console.log(cars)
+        // console.log(cars);
         // res.json({ cars });
-        const car = cars[0];
-        res.render("userListings", {car});
+        // const car = cars[0];
+        res.render("userListings", {cars});
       })
       .catch(err => {
         res
