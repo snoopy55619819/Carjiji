@@ -14,8 +14,15 @@
   <%- include('partials/_header') %>
 </head>
 
+
 <body>
-  <section class='new_listing_section'>
+
+<button type="submit" class="btn btn-primary" id="show-Edit">Edit listing</button>
+<button type="submit" class="btn btn-primary" id="show-New">New listing</button>
+
+<div id="newDIV">
+
+  <div class='new_listing_section'>
     <div class="new_listing_input">
       <h1 class='account_heading'>Add new listing:</h1>
 
@@ -56,6 +63,56 @@
         </div>
       </form>
     </div>
-    </section>
-  </body>
-  </html>
+  </div>
+</div>
+
+<div id="editDIV">
+    <section class='new_listing_section'>
+      <div class="new_listing_input">
+        <h1 class='account_heading'>Edit Listing:</h1>
+
+        <form class="new_listing_form" action="/cars/new" method="POST">
+
+          <div class="input-group mb-3 car_form_element">
+            <span class="input-group-text" id="inputGroup-sizing-default">Car model</span>
+            <input type="text" name="car_model" class="form-control" />
+          </div>
+
+          <div class="input-group mb-3 car_form_element">
+            <span class="input-group-text" id="inputGroup-sizing-default">Car make</span>
+            <input type="text" name="car_make" class="form-control" />
+          </div>
+
+          <div class="input-group mb-3 car_form_element">
+            <span class="input-group-text" id="inputGroup-sizing-default">Car year</span>
+            <input type="text" name="car_year" class="form-control" />
+          </div>
+
+          <div class="input-group mb-3 car_form_element" >
+            <span class="input-group-text border-0">Listing price($)</span>
+            <input type="text" name="listing_price" class="form-control rounded" aria-label="Amount (to the nearest dollar)" />
+            <span class="input-group-text border-0">.00</span>
+          </div>
+
+          <div class="input-group mb-3 car_form_photo_element">
+            <span class="input-group-text" id="inputGroup-sizing-default">Add photo url</span>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="input-group mb-3 car_form_description_element">
+            <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
+            <textarea class="form-control" id="textAreaExample" rows="4"></textarea>
+          </div>
+          <div class="car_form_button">
+            <button type="submit" class="btn btn-primary">Add new listing</button>
+          </div>
+        </form>
+      </div>
+      </section>
+
+  </div>
+</body>
+
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+</html>
