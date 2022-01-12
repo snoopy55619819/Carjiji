@@ -6,7 +6,7 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const carQueries = require('../db/queries/car-queries');
 
 module.exports = () => {
@@ -16,8 +16,10 @@ module.exports = () => {
   router.get("/", (req, res) => {
     carQueries.getAllCars()
       .then(cars => {
-        // res.json({ cars });
-        res.render('cars', {cars});
+        const templateVars = {
+          cars
+        };
+        res.render('cars', templateVars);
       })
       .catch(err => {
         res
