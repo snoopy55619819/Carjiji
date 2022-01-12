@@ -45,12 +45,20 @@ module.exports = () => {
 
   // GET Route: "/cars/:id"
   //  Individual car details
-  router.get("/:id", (req, res) => {
+  router.get("/:id", async (req, res) => {
+    const loggedInUserId = req.cookies.user_id;
+    let userObj;
+
+    await userQueries.getUserById(loggedInUserId)
+      .then(user => {
+        userObj = user;
+      })
+      .catch(err => err.message);
+    console.log('in between queries',userObj)
     carQueries.getCarByCarId(req.params.id)
       .then(car => {
-        const loggedInUserId = Number(req.cookies.user_id);
         // console.log(typeof loggedInUserId, typeof car.owner_id);
-        res.render('single-car.ejs', {car, loggedInUserId});
+        res.render('single-car.ejs', {car, userObj});
       })
       .catch(err => {
         res

@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(() => {
   console.log("Page is ready");
   //
   //COUNT INSERTED CHARACTERS
