@@ -14,12 +14,9 @@ module.exports = () => {
   // GET Route: "/cars/"
   //  Show all cars
   router.get("/", (req, res) => {
-    carQueries.getAllCars()
+    carQueries.getAllActiveCars()
       .then(cars => {
-        const templateVars = {
-          cars
-        };
-        res.render('cars', templateVars);
+        res.render('cars', { cars });
       })
       .catch(err => {
         res
@@ -40,6 +37,26 @@ module.exports = () => {
           .status(500)
           .json({ error: err.message });
       });
+  });
+
+  // POST Route: "/cars/search"
+  //  Search results page
+  router.post("/search", (req, res) => {
+    const priceRange = req.body.select_price_range;
+
+    if (!priceRange) {
+      return res.redirect('/cars');
+    } else {
+      const parsedPriceRange = priceRange.split(' ');
+
+      carQueries.getCarsByPriceRange(parsedPriceRange)
+        .then(cars => {
+          return res.render('cars', { cars });
+        })
+        .catch(err => {
+          return res.status(500).json({ error: err.message });
+        });
+    }
   });
 
   // POST Route: "/cars/:id"
