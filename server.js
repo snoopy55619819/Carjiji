@@ -47,12 +47,14 @@ const carsRoutes = require("./routes/cars-router");
 const usersRoutes = require("./routes/user-router");
 const conversationsRoutes = require("./routes/conversations-router");
 const aboutPageRoutes = require("./routes/about");
+const favouritesPageRoutes = require("./routes/favourites-router");
 
 // Mount all resource routes
 app.use("/cars", carsRoutes());
 app.use("/user", usersRoutes());
 app.use("/conversations", conversationsRoutes());
 app.use("/about", aboutPageRoutes());
+app.use("/favourites", favouritesPageRoutes());
 // Note: mount other resources here, using the same pattern above
 
 // Home page
