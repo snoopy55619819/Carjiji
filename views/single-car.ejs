@@ -17,6 +17,7 @@
   <!-- App CSS  -->
   <link rel="stylesheet" href="/styles/single-car.css" type="text/css" />
 
+
   <title>Single Car Features</title>
 </head>
 
@@ -105,10 +106,14 @@
             </form>
             <br>
 
+
+
             <span class="random_text" style="font-size: 48px; color: black;">
-              <i class="far fa-star"></i>
+              <i class="fas fa-star" id="favStarIcon" name="<%= car.id%>"></i>
             </span>
-            <br>
+            <br name="user_id">
+
+
           </div>
           <% if(userObj.id===car.owner_id || userObj.is_admin){ %>
             <button type="submit" class="btn btn-outline-info" id="edit-car-toggle">
@@ -227,5 +232,6 @@
 </body>
 
 <script type="text/javascript" src="/scripts/app.js"></script>
+<script type="text/javascript" src="/scripts/favourites.js"></script>
 
 </html>
