@@ -19,3 +19,5 @@ INSERT INTO messages (id, conversation_id, message_sender_id, message_body, crea
  (14, 4, 2, 'wut?', '2021-02-01'),
 
  (15, 5, 3, 'is car still for sale?', '2021-03-01');
+
+ALTER SEQUENCE messages_id_seq RESTART WITH 50;
