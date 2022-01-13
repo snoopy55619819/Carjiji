@@ -38,6 +38,22 @@ const getCarsForUser = (user_id) => {
     })
     .catch((err) => err.message);
 };
+
+const getFavouritesForUser = (user_id) => {
+
+  return db.query(`
+    SELECT * FROM cars
+    JOIN users_favorite_cars ON cars.id = users_favorite_cars.car_id
+    JOIN users ON users.id = users_favorite_cars.user_id
+    WHERE user_id = $1
+    ORDER BY car_id
+  `, [user_id])
+    .then((res) => {
+      return res.rows;
+    })
+    .catch(err => err.message);
+};
+
 //alter sequence cars_id_seq restart 1000;
 const addCar = (newCar) => {
   // console.log('query file', newCar)
@@ -161,6 +177,7 @@ module.exports = {
   getAllCars,
   getCarByCarId,
   getCarsForUser,
+  getFavouritesForUser,
   addCar,
   getCarAndOwnerByCarId,
   makeCarSold,

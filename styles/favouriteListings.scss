@@ -1,0 +1,40 @@
+$section-padding: 0 1em 0 1em;
+
+
+h5 {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.cars-container {
+  // outline-style:double;
+  // outline-width: 1px;
+
+  font-family: Montserrat;
+
+  padding: 1em;
+  margin: 1em 2em 0 2em;
+
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-evenly;
+
+  .single-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    padding: 1em;
+    margin: 1em;
+
+    .car-image {
+      height: 60%;
+      width: 16rem;
+    }
+    .card-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+}
