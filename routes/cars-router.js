@@ -71,6 +71,7 @@ module.exports = () => {
   router.post("/u/:id", (req, res) => {
     const carId = Number(req.params.id); //7
     const editingCar = req.body;
+     console.log("editingCar from edit route", editingCar );
     carQueries
       .editCarById(editingCar, carId)
       .then(() => {
@@ -108,18 +109,56 @@ module.exports = () => {
       });
   });
 
+
+
   // POST Route: "/cars/:id/delete"
   //  Delete a car posting
   router.post("/:id/delete", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then((data) => {
-        const cars = data.rows;
-        res.json({ cars });
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
+    const carIdToDelete = Number(req.params.id); //7
+    const deletingCar = req.body;
+    console.log("carIdToDelete", carIdToDelete );
+    console.log("deletingCar from delete route", deletingCar );
+    // db.query(`SELECT * FROM users;`)
+    //   .then((data) => {
+    //     const cars = data.rows;
+    //     res.json({ cars });
+    //   })
+    //   .catch((err) => {
+    //     res.status(500).json({ error: err.message });
+    //   });
   });
+
+  // DELETE
+  /*
+app.post("/urls/:shortURL/delete", (req, res) => {
+  const { user_id } = req.session;
+  if (!user_id) {
+    return res.redirect("/login");
+  }
+
+  const user = users[user_id];
+  if (!user) {
+    return res.redirect("/login");
+  }
+
+  const { shortURL } = req.params;
+
+  const urlObject = urlDatabase[shortURL];
+  if (!urlObject) {
+    return res.status(400).send(" This shortURL is not exist in data base.");
+  }
+
+  const urlBelongsToUser = urlObject.userID === user.id; // true of false
+  if (!urlBelongsToUser) {
+    return res.status(400).send(" You do not own this url. ");
+  }
+  delete urlDatabase[shortURL];
+  res.redirect("/urls");
+
+});
+*/
+
+
 
   return router;
 };

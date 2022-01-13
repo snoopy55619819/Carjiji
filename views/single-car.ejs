@@ -234,9 +234,11 @@
                     >
                   </div>
                   <div class="car_form_button">
-                    <button type="submit" class="btn btn-outline-info">
-                      Update listing
-                    </button>
+                  <button type="submit" class="btn btn-outline-info">
+                    Update listing
+                  </button>
+                </form>
+
                     <button
                       type="submit"
                       class="btn btn-outline-info"
@@ -244,11 +246,18 @@
                     >
                       Cancel
                     </button>
-                    <button type="submit" class="btn btn-outline-danger">
-                      Delete Posting
-                    </button>
+
+
+
+                    <form method="POST" action="/cars/<%=car.id %>/delete">
+                      <button type="submit" class="btn btn-outline-danger">
+                        Delete Posting
+                      </button>
+                    </form>
+
+
+
                   </div>
-                </form>
               </div>
             </div>
           </div>
