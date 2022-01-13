@@ -5,25 +5,23 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const express = require('express');
-const router  = express.Router();
-const carQueries = require('../db/queries/car-queries');
-const userQueries = require('../db/queries/user-queries');
+const express = require("express");
+const router = express.Router();
+const carQueries = require("../db/queries/car-queries");
+const userQueries = require("../db/queries/user-queries");
 
 module.exports = () => {
-
   // GET Route: "/cars/"
   //  Show all cars
   router.get("/", (req, res) => {
-    carQueries.getAllCars()
-      .then(cars => {
+    carQueries
+      .getAllCars()
+      .then((cars) => {
         // res.json({ cars });
-        res.render('cars', {cars});
+        res.render("cars", { cars });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
 
@@ -32,15 +30,14 @@ module.exports = () => {
   router.get("/new", (req, res) => {
     const loggedInUserId = req.cookies.user_id;
 
-    userQueries.getUserById(loggedInUserId)
-      .then(user => {
+    userQueries
+      .getUserById(loggedInUserId)
+      .then((user) => {
         // res.json({ cars });
-        res.render("addCar", { user })
+        res.render("addCar", { user });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
 
@@ -51,45 +48,44 @@ module.exports = () => {
     let userObj;
     // let ownerObj;
 
-    await userQueries.getUserById(loggedInUserId)
-      .then(user => {
+    await userQueries
+      .getUserById(loggedInUserId)
+      .then((user) => {
         userObj = user;
       })
-      .catch(err => err.message);
+      .catch((err) => err.message);
 
-    carQueries.getCarAndOwnerByCarId(req.params.id)
-      .then(car => {
-         console.log(car);
-        res.render('single-car.ejs', {car, userObj});
+    carQueries
+      .getCarAndOwnerByCarId(req.params.id)
+      .then((car) => {
+        //  console.log(car);
+        res.render("single-car.ejs", { car, userObj });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
-
   });
 
   // POST Route: "/cars/u/:id"
   //  Edit car posting details
   router.post("/u/:id", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-    .then(data => {
-      const cars = data.rows;
-      res.json({ cars });
-    })
-    .catch(err => {
-      res
-      .status(500)
-      .json({ error: err.message });
-    });
+    const carId = Number(req.params.id); //7
+    const editingCar = req.body;
+    carQueries
+      .editCarById(editingCar, carId)
+      .then(() => {
+       res.redirect(`/cars/${carId}`);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
   });
 
   // POST Route: "/cars/new"
   //  Add new car posting
   router.post("/new", (req, res) => {
     const loggedInUserId = req.cookies.user_id;
-    console.log(req.body);
+    // console.log(req.body);
 
     const newCar = {
       owner_id: loggedInUserId,
@@ -98,18 +94,17 @@ module.exports = () => {
       car_year: req.body.car_year || "",
       listing_price: req.body.listing_price || 0,
       car_photo_url: req.body.car_photo_url || "",
-      description: req.body.description || ""
-    }
+      description: req.body.description || "",
+    };
     //owner_id, car_make, car_model, car_year, listing_price, car_photo_url, description
-    carQueries.addCar(newCar)
-      .then(car => {
-        console.log(car);
+    carQueries
+      .addCar(newCar)
+      .then((car) => {
+        // console.log(car);
         // res.json({ cars });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
 
@@ -117,14 +112,12 @@ module.exports = () => {
   //  Delete a car posting
   router.post("/:id/delete", (req, res) => {
     db.query(`SELECT * FROM users;`)
-      .then(data => {
+      .then((data) => {
         const cars = data.rows;
         res.json({ cars });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
 
