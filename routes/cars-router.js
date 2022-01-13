@@ -14,11 +14,9 @@ module.exports = () => {
   // GET Route: "/cars/"
   //  Show all cars
   router.get("/", (req, res) => {
-    carQueries
-      .getAllCars()
-      .then((cars) => {
-        // res.json({ cars });
-        res.render("cars", { cars });
+    carQueries.getAllActiveCars()
+      .then(cars => {
+        res.render('cars', { cars });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -41,6 +39,22 @@ module.exports = () => {
       });
   });
 
+
+  // // POST Route: "/cars/:id"
+  // //  Edit car posting details
+  // router.post("/:id", (req, res) => {
+  //   db.query(`SELECT * FROM users;`)
+  //     .then(data => {
+  //       const cars = data.rows;
+  //       res.json({ cars });
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
+
   // GET Route: "/cars/:id"
   //  Individual car details
   router.get("/:id", async (req, res) => {
@@ -55,15 +69,34 @@ module.exports = () => {
       })
       .catch((err) => err.message);
 
-    carQueries
-      .getCarAndOwnerByCarId(req.params.id)
-      .then((car) => {
+    carQueries.getCarAndOwnerByCarId(req.params.id)
+      .then(car => {
         //  console.log(car);
-        res.render("single-car.ejs", { car, userObj });
+        res.render('single-car.ejs', { car, userObj });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
+  });
+
+  // POST Route: "/cars/search"
+  //  Search results page
+  router.post("/search", (req, res) => {
+    const priceRange = req.body.select_price_range;
+
+    if (!priceRange) {
+      return res.redirect('/cars');
+    } else {
+      const parsedPriceRange = priceRange.split(' ');
+
+      carQueries.getCarsByPriceRange(parsedPriceRange)
+        .then(cars => {
+          return res.render('cars', { cars });
+        })
+        .catch(err => {
+          return res.status(500).json({ error: err.message });
+        });
+    }
   });
 
   // POST Route: "/cars/u/:id"
@@ -75,7 +108,7 @@ module.exports = () => {
     carQueries
       .editCarById(editingCar, carId)
       .then(() => {
-       res.redirect(`/cars/${carId}`);
+        res.redirect(`/cars/${carId}`);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -86,7 +119,7 @@ module.exports = () => {
   //  Add new car posting
   router.post("/new", (req, res) => {
     const loggedInUserId = req.cookies.user_id;
-    // console.log(req.body);
+    console.log(req.body);
 
     const newCar = {
       owner_id: loggedInUserId,
@@ -98,11 +131,10 @@ module.exports = () => {
       description: req.body.description || "",
     };
     //owner_id, car_make, car_model, car_year, listing_price, car_photo_url, description
-    carQueries
-      .addCar(newCar)
+    carQueries.addCar(newCar)
       .then((car) => {
-        // console.log(car);
-        // res.json({ cars });
+        console.log(car);
+        res.redirect(`/cars/${car.id}`);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -128,37 +160,43 @@ module.exports = () => {
     //   });
   });
 
-  // DELETE
-  /*
-app.post("/urls/:shortURL/delete", (req, res) => {
-  const { user_id } = req.session;
-  if (!user_id) {
-    return res.redirect("/login");
-  }
+  // POST Route: "/cars/:id/sold"
+  //  Mark car as sold
+  router.post("/:id/sold", (req, res) => {
+    // console.log(req.params)
+    const car_id = Number(req.params.id);
 
-  const user = users[user_id];
-  if (!user) {
-    return res.redirect("/login");
-  }
+    carQueries.makeCarSold(car_id)
+      .then(car => {
+        // console.log(car);
+        res.redirect('/user/listings');
+        // res.json({ cars });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
-  const { shortURL } = req.params;
+  // POST Route: "/cars/:id/active"
+  //  Mark car as not sold
+  router.post("/:id/active", (req, res) => {
+    // console.log(req.params)
+    const car_id = Number(req.params.id);
 
-  const urlObject = urlDatabase[shortURL];
-  if (!urlObject) {
-    return res.status(400).send(" This shortURL is not exist in data base.");
-  }
-
-  const urlBelongsToUser = urlObject.userID === user.id; // true of false
-  if (!urlBelongsToUser) {
-    return res.status(400).send(" You do not own this url. ");
-  }
-  delete urlDatabase[shortURL];
-  res.redirect("/urls");
-
-});
-*/
-
-
+    carQueries.makeCarActive(car_id)
+      .then(car => {
+        // console.log(car);
+        res.redirect('/user/listings');
+        // res.json({ cars });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
   return router;
 };

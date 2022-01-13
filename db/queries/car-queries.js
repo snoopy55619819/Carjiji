@@ -10,6 +10,17 @@ const getAllCars = () => {
     .catch((err) => err.message);
 };
 
+const getAllActiveCars = () => {
+
+  return db.query(`SELECT * FROM cars
+    WHERE is_sold = FALSE
+    ORDER BY id`)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch(err => err.message);
+};
+
 const getCarByCarId = (car_id) => {
   return db
     .query(
@@ -25,20 +36,36 @@ const getCarByCarId = (car_id) => {
     .catch((err) => err.message);
 };
 
+const getCarsByPriceRange = (priceRange) => {
+
+  return db.query(`
+    SELECT * FROM cars
+    WHERE listing_price >= ($1 * 100)
+    AND listing_price <= ($2 * 100)
+    AND is_sold = FALSE
+    ORDER BY listing_price`, priceRange)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch(err => err.message);
+};
+
 const getCarsForUser = (user_id) => {
   return db
     .query(
       `
     SELECT * FROM cars
     WHERE owner_id = $1
-  `,
-      [user_id]
-    )
+    ORDER BY id
+  `, [user_id])
     .then((res) => {
       return res.rows;
     })
     .catch((err) => err.message);
 };
+
+
+
 //alter sequence cars_id_seq restart 1000;
 const addCar = (newCar) => {
   // console.log('query file', newCar)
@@ -125,12 +152,48 @@ const editCarById = (editingCar, carId) => {
     .catch(err => err.message);
 };
 
+const makeCarSold = (car_id) => {
+  const updateCarStatusQuery = `
+  UPDATE cars
+  SET is_sold = 'TRUE'
+  WHERE cars.id = $1
+  RETURNING *
+  `;
+  // console.log('from cars query', car_id, updateCarStatusQuery);
+
+  return db.query(updateCarStatusQuery, [car_id])
+    .then((res) => {
+      return res.rows[0];
+    })
+    .catch(err => err.message);
+};
+
+const makeCarActive = (car_id) => {
+  const updateCarStatusQuery = `
+  UPDATE cars
+  SET is_sold = 'FALSE'
+  WHERE cars.id = $1
+  RETURNING *
+  `;
+  // console.log('from cars query', car_id, updateCarStatusQuery);
+
+  return db.query(updateCarStatusQuery, [car_id])
+    .then((res) => {
+      return res.rows[0];
+    })
+    .catch(err => err.message);
+};
+
 
 module.exports = {
   getAllCars,
+  getAllActiveCars,
   getCarByCarId,
+  getCarsByPriceRange,
   getCarsForUser,
   addCar,
   getCarAndOwnerByCarId,
+  makeCarSold,
+  makeCarActive,
   editCarById
 };

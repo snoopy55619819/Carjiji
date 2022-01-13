@@ -8,3 +8,5 @@ INSERT INTO users_favorite_cars (id, user_id, car_id)
  (6, 2, 1),
  (7, 2, 2),
  (8, 3, 1);
+
+ALTER SEQUENCE users_favorite_cars_id_seq RESTART WITH 50;

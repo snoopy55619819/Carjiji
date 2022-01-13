@@ -6,9 +6,10 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const userQueries = require('../db/queries/user-queries');
 const carQueries = require('../db/queries/car-queries');
+const favouritesQueries = require('../db/queries/favourites-queries');
 
 module.exports = () => {
 
@@ -38,7 +39,26 @@ module.exports = () => {
 
     carQueries.getCarsForUser(loggedInUserId)
       .then(cars => {
-        res.json({ cars });
+        // console.log(cars);
+        // res.json({ cars });
+        // const car = cars[0];
+        res.render("userListings", { cars });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  // GET Route: "/user/favourites"
+  //  Show user favourites
+  router.get("/favourites", (req, res) => {
+    const loggedInUserId = req.cookies.user_id;
+
+    favouritesQueries.getFavouritesForUser(loggedInUserId)
+      .then(cars => {
+        res.render("favouriteListings", { cars });
       })
       .catch(err => {
         res
