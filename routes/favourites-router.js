@@ -32,14 +32,11 @@ module.exports = () => {
   //  Show user account info
   router.post("/api", (req, res) => {
     // Get logged in user from cookies
-    console.log('/api post ran from router.')
-    console.log(req.body);
     const user_id = Number(req.body.user_id);
     const car_id = Number(req.body.car_id);
 
     favouritesQueries.addFavourite(user_id, car_id)
       .then(favItem => {
-        console.log('request complete. favourite added:', favItem);
         // res.json(favItem);
       })
       .catch(err => {
@@ -54,14 +51,11 @@ module.exports = () => {
   //  Show user account info
   router.post("/d/api", (req, res) => {
     // Get logged in user from cookies
-    console.log('/d/api post ran from router.')
-    console.log(req.body);
     const user_id = Number(req.body.user_id);
     const car_id = Number(req.body.car_id);
 
     favouritesQueries.deleteFavourite(user_id, car_id)
-      .then(favItem => {
-        console.log('request complete. favourite deleted:', favItem);
+      .then(() => {
         // res.json(favItem);
       })
       .catch(err => {

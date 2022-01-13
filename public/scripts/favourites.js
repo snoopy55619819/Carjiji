@@ -8,7 +8,6 @@ $(() => {
   const user_id = document.cookie.substring(8);
 
   $( $favouriteIcon ).click(function() {
-    console.log('star clicked')
     const currentColor = $($favouriteIcon).css('color');
 
     if (currentColor === 'rgb(255, 215, 0)') {
@@ -21,7 +20,6 @@ $(() => {
         url: '/favourites/d/api',
         data: {car_id, user_id},
         success: (body) => {
-          console.log('ajax result for delete:', body);
         }
       });
 
@@ -35,7 +33,6 @@ $(() => {
       url: '/favourites/api',
       data: {car_id, user_id},
       success: (body) => {
-        console.log('ajax result for add:', body);
       }
     });
     //add to fav list
