@@ -6,7 +6,7 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const carQueries = require('../db/queries/car-queries');
 const userQueries = require('../db/queries/user-queries');
 
@@ -58,8 +58,8 @@ module.exports = () => {
 
     carQueries.getCarAndOwnerByCarId(req.params.id)
       .then(car => {
-         console.log(car);
-        res.render('single-car.ejs', {car, userObj});
+        console.log(car);
+        res.render('single-car.ejs', { car, userObj });
       })
       .catch(err => {
         res
@@ -73,15 +73,15 @@ module.exports = () => {
   //  Edit car posting details
   router.post("/u/:id", (req, res) => {
     db.query(`SELECT * FROM users;`)
-    .then(data => {
-      const cars = data.rows;
-      res.json({ cars });
-    })
-    .catch(err => {
-      res
-      .status(500)
-      .json({ error: err.message });
-    });
+      .then(data => {
+        const cars = data.rows;
+        res.json({ cars });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
 
   // POST Route: "/cars/new"
