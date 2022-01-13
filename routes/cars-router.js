@@ -88,11 +88,10 @@ module.exports = () => {
       })
       .catch((err) => err.message);
 
-    carQueries
-      .getCarAndOwnerByCarId(req.params.id)
-      .then((car) => {
+    carQueries.getCarAndOwnerByCarId(req.params.id)
+      .then(car => {
         //  console.log(car);
-        res.render("single-car.ejs", { car, userObj });
+        res.render('single-car.ejs', {car, userObj});
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -130,9 +129,8 @@ module.exports = () => {
       description: req.body.description || "",
     };
     //owner_id, car_make, car_model, car_year, listing_price, car_photo_url, description
-    carQueries
-      .addCar(newCar)
-      .then((car) => {
+    carQueries.addCar(newCar)
+      .then(car => {
         // console.log(car);
         // res.json({ cars });
       })
@@ -157,12 +155,12 @@ module.exports = () => {
   // POST Route: "/cars/:id/sold"
   //  Mark car as sold
   router.post("/:id/sold", (req, res) => {
-    console.log(req.params)
+    // console.log(req.params)
     const car_id = Number(req.params.id);
 
     carQueries.makeCarSold(car_id)
       .then(car => {
-        console.log(car);
+        // console.log(car);
         res.redirect('/user/listings');
         // res.json({ cars });
       })
@@ -176,12 +174,12 @@ module.exports = () => {
   // POST Route: "/cars/:id/active"
   //  Mark car as not sold
   router.post("/:id/active", (req, res) => {
-    console.log(req.params)
+    // console.log(req.params)
     const car_id = Number(req.params.id);
 
     carQueries.makeCarActive(car_id)
       .then(car => {
-        console.log(car);
+        // console.log(car);
         res.redirect('/user/listings');
         // res.json({ cars });
       })
