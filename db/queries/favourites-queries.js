@@ -10,6 +10,23 @@ const getAllFavourites = () => {
     .catch(err => err.message);
 };
 
+
+const getFavouritesForUser = (user_id) => {
+
+  return db.query(`
+    SELECT * FROM cars
+    JOIN users_favorite_cars ON cars.id = users_favorite_cars.car_id
+    JOIN users ON users.id = users_favorite_cars.user_id
+    WHERE user_id = $1
+    ORDER BY car_id
+  `, [user_id])
+    .then((res) => {
+      return res.rows;
+    })
+    .catch(err => err.message);
+};
+
+
 const addFavourite = (user_id, car_id) => {
 
   return db.query(`
@@ -41,5 +58,6 @@ const deleteFavourite = (user_id, car_id) => {
 module.exports = {
   getAllFavourites,
   addFavourite,
-  deleteFavourite
+  deleteFavourite,
+  getFavouritesForUser
 };
