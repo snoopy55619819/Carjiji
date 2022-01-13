@@ -22,4 +22,3 @@ Dealer Maintained. Selling because ordered a new MDX.',1890000, 'http://autohous
 (8, 3,'AM General','Hummer', 1993, 'Starts up and runs great. Suspension, steering and brakes all in good condition. Mechanically in good shape, but could use paint & some body work.', 3800000, 'https://bringatrailer.com/wp-content/uploads/2020/06/1591675387a1d228906077E6CADCCC-0C18-4F81-8B07-28AB5913EBC4.jpeg', FALSE ),
 (9, 3, 'Nissan', 'MICRA', 2015, 'Very cute little car that will start in any weather and will not get stuck, made it to Banff and back with this car in extreme weather without any issues.', 920000, 'http://micra-forum.com/imgs/2015-nissan-micra-04.jpg', FALSE ),
 (10, 1,'Audi', 'A8', 2006, 'Selling this beautiful luxurious saloon in amazing condition inside out! Black on black executive sedan.', 999500, 'https://www.carspecs.us/photos/114059c18bf25c2e13844557548eb84f4160afac-2000.jpg', FALSE);
-
