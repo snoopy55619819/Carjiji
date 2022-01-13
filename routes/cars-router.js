@@ -39,40 +39,21 @@ module.exports = () => {
       });
   });
 
-  // POST Route: "/cars/search"
-  //  Search results page
-  router.post("/search", (req, res) => {
-    const priceRange = req.body.select_price_range;
 
-    if (!priceRange) {
-      return res.redirect('/cars');
-    } else {
-      const parsedPriceRange = priceRange.split(' ');
-
-      carQueries.getCarsByPriceRange(parsedPriceRange)
-        .then(cars => {
-          return res.render('cars', { cars });
-        })
-        .catch(err => {
-          return res.status(500).json({ error: err.message });
-        });
-    }
-  });
-
-  // POST Route: "/cars/:id"
-  //  Edit car posting details
-  router.post("/:id", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const cars = data.rows;
-        res.json({ cars });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
+  // // POST Route: "/cars/:id"
+  // //  Edit car posting details
+  // router.post("/:id", (req, res) => {
+  //   db.query(`SELECT * FROM users;`)
+  //     .then(data => {
+  //       const cars = data.rows;
+  //       res.json({ cars });
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
 
   // GET Route: "/cars/:id"
   //  Individual car details
@@ -91,11 +72,31 @@ module.exports = () => {
     carQueries.getCarAndOwnerByCarId(req.params.id)
       .then(car => {
         //  console.log(car);
-        res.render('single-car.ejs', {car, userObj});
+        res.render('single-car.ejs', { car, userObj });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
+  });
+
+  // POST Route: "/cars/search"
+  //  Search results page
+  router.post("/search", (req, res) => {
+    const priceRange = req.body.select_price_range;
+
+    if (!priceRange) {
+      return res.redirect('/cars');
+    } else {
+      const parsedPriceRange = priceRange.split(' ');
+
+      carQueries.getCarsByPriceRange(parsedPriceRange)
+        .then(cars => {
+          return res.render('cars', { cars });
+        })
+        .catch(err => {
+          return res.status(500).json({ error: err.message });
+        });
+    }
   });
 
   // POST Route: "/cars/u/:id"
@@ -117,7 +118,7 @@ module.exports = () => {
   //  Add new car posting
   router.post("/new", (req, res) => {
     const loggedInUserId = req.cookies.user_id;
-    // console.log(req.body);
+    console.log(req.body);
 
     const newCar = {
       owner_id: loggedInUserId,
@@ -130,9 +131,9 @@ module.exports = () => {
     };
     //owner_id, car_make, car_model, car_year, listing_price, car_photo_url, description
     carQueries.addCar(newCar)
-      .then(car => {
-        // console.log(car);
-        // res.json({ cars });
+      .then((car) => {
+        console.log(car);
+        res.redirect(`/cars/${car.id}`);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });

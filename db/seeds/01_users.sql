@@ -5,3 +5,4 @@ INSERT INTO users (id, name, email, phone, is_admin)
  (2,'Kira', '456@yahoo.com', '506-445-1020', FALSE),
  (3,'Jack', '789@inbox.com', '647-550-1525', FALSE);
 
+ALTER SEQUENCE users_id_seq RESTART WITH 50;

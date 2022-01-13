@@ -5,3 +5,5 @@ INSERT INTO conversations (id, buyer_id, seller_id, car_id, created_date)
  (3, 3, 1, 3, '2021-03-01'),
  (4, 1, 2, 4, '2021-04-01'),
  (5, 3, 2, 5, '2021-05-01');
+
+ALTER SEQUENCE conversations_id_seq RESTART WITH 50;
