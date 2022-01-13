@@ -91,8 +91,12 @@
                 <p class="card-text">
                   <small class="text-muted">Write your message to car owner.</small>
                 </p>
-                <!-- <input type="text" name="anotherInput" value="test1" /> -->
-                <textarea class="form-control" id="message-text" placeholder="Your message" name="message"></textarea>
+                <textarea
+                  class="form-control"
+                  id="message-text"
+                  placeholder="Your message"
+                  name="message"
+                ></textarea>
               </div>
               <br />
               <button type="submit" class="btn btn-outline-info">
@@ -125,15 +129,29 @@
                     id="carImagePreview" />
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="card-body">
-                  <h5 class="card-title">Edit car info</h5>
-                  <!-- Forms -->
-                  <form class="new_listing_form" action="/cars/new" method="POST">
-                    <div class="input-group mb-3 car_form_element">
-                      <span class="input-group-text" id="inputGroup-sizing-default">Car model</span>
-                      <input type="text" name="car_model" class="form-control" value="<%= car.car_model %>" />
-                    </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card-body">
+                <h5 class="card-title">Edit car info</h5>
+                <!-- Forms -->
+                <form
+                  class="new_listing_form"
+                  action="/cars/u/<%=car.id %>"
+                  method="POST"
+                >
+                  <div class="input-group mb-3 car_form_element">
+                    <span
+                      class="input-group-text"
+                      id="inputGroup-sizing-default"
+                      >Car model</span
+                    >
+                    <input
+                      type="text"
+                      name="car_model"
+                      class="form-control"
+                      value="<%= car.car_model %>"
+                    />
+                  </div>
 
                     <div class="input-group mb-3 car_form_element">
                       <span class="input-group-text" id="inputGroup-sizing-default">Car make</span>
@@ -152,29 +170,54 @@
                       <span class="input-group-text border-0">.00</span>
                     </div>
 
-                    <div class="input-group mb-3 car_form_photo_element" id="imageInputBox">
-                      <span class="input-group-text" id="inputGroup-sizing-default">Add photo url</span>
-                      <input type="text" class="form-control" id="carURLInputValue" value="<%= car.car_photo_url %>" />
-                    </div>
-
-                    <div class="input-group mb-3 car_form_description_element">
-                      <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
-                      <textarea class="form-control" id="textAreaExample" rows="4">
-<%= car.description %></textarea>
-                    </div>
-                    <div class="car_form_button">
-                      <button type="submit" class="btn btn-outline-info">
-                        Update listing
-                      </button>
-                      <button type="submit" class="btn btn-outline-info" id="edit-car-toggle-cancel">
-                        Cancel
-                      </button>
-                      <button type="submit" class="btn btn-outline-danger">
-                        Delete Posting
-                      </button>
-                    </div>
-                  </form>
-                </div>
+                  <div
+                    class="input-group mb-3 car_form_photo_element"
+                    id="imageInputBox"
+                  >
+                    <span
+                      class="input-group-text"
+                      id="inputGroup-sizing-default"
+                      >Add photo url</span
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="carURLInputValue"
+                      value="<%= car.car_photo_url %>"
+                      name="car_photo_url"
+                    />
+                  </div>
+                  <div class="input-group mb-3 car_form_description_element">
+                    <span
+                      class="input-group-text"
+                      id="inputGroup-sizing-default"
+                      >Description</span
+                    >
+                    <textarea
+                      class="form-control"
+                      id="edditing-car-textarea"
+                      rows="4"
+                      name="description"
+                    >
+<%= car.description %></textarea
+                    >
+                  </div>
+                  <div class="car_form_button">
+                    <button type="submit" class="btn btn-outline-info">
+                      Update listing
+                    </button>
+                    <button
+                      type="submit"
+                      class="btn btn-outline-info"
+                      id="edit-car-toggle-cancel"
+                    >
+                      Cancel
+                    </button>
+                    <button type="submit" class="btn btn-outline-danger">
+                      Delete Posting
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
