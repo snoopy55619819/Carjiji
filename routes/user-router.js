@@ -6,7 +6,7 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const userQueries = require('../db/queries/user-queries');
 const carQueries = require('../db/queries/car-queries');
 
@@ -41,7 +41,23 @@ module.exports = () => {
         // console.log(cars);
         // res.json({ cars });
         // const car = cars[0];
-        res.render("userListings", {cars});
+        res.render("userListings", { cars });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  // GET Route: "/user/listings"
+  //  Show user listings
+  router.get("/favourites", (req, res) => {
+    const loggedInUserId = req.cookies.user_id;
+
+    carQueries.getFavouritesForUser(loggedInUserId)
+      .then(cars => {
+        res.render("favouriteListings", { cars });
       })
       .catch(err => {
         res
