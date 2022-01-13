@@ -9,6 +9,7 @@ const express = require('express');
 const router = express.Router();
 const userQueries = require('../db/queries/user-queries');
 const carQueries = require('../db/queries/car-queries');
+const favouritesQueries = require('../db/queries/favourites-queries');
 
 module.exports = () => {
 
@@ -50,12 +51,12 @@ module.exports = () => {
       });
   });
 
-  // GET Route: "/user/listings"
-  //  Show user listings
+  // GET Route: "/user/favourites"
+  //  Show user favourites
   router.get("/favourites", (req, res) => {
     const loggedInUserId = req.cookies.user_id;
 
-    carQueries.getFavouritesForUser(loggedInUserId)
+    favouritesQueries.getFavouritesForUser(loggedInUserId)
       .then(cars => {
         res.render("favouriteListings", { cars });
       })
