@@ -81,7 +81,7 @@
             </div>
           </div>
           <div class="col-md-2">
-            <!-- Forms -->
+            <!-- Form -->
             <form
               class="message-form"
               action="mailto:<%= car.owner_email %>?subject=Mail%20From%20Cars%20WebSite&body=Is%20this%20car%20available"
@@ -96,7 +96,6 @@
                     >Write your message to car owner.</small
                   >
                 </p>
-                <!-- <input type="text" name="anotherInput" value="test1" /> -->
                 <textarea
                   class="form-control"
                   id="message-text"
@@ -141,7 +140,11 @@
               <div class="card-body">
                 <h5 class="card-title">Edit car info</h5>
                 <!-- Forms -->
-                <form class="new_listing_form" action="/cars/new" method="POST">
+                <form
+                  class="new_listing_form"
+                  action="/cars/u/<%=car.id %>"
+                  method="POST"
+                >
                   <div class="input-group mb-3 car_form_element">
                     <span
                       class="input-group-text"
@@ -212,9 +215,9 @@
                       class="form-control"
                       id="carURLInputValue"
                       value="<%= car.car_photo_url %>"
+                      name="car_photo_url"
                     />
                   </div>
-
                   <div class="input-group mb-3 car_form_description_element">
                     <span
                       class="input-group-text"
@@ -223,8 +226,9 @@
                     >
                     <textarea
                       class="form-control"
-                      id="textAreaExample"
+                      id="edditing-car-textarea"
                       rows="4"
+                      name="description"
                     >
 <%= car.description %></textarea
                     >
@@ -240,12 +244,7 @@
                     >
                       Cancel
                     </button>
-                    <button
-                      type="submit"
-                      class="btn btn-outline-dark"
-                      data-mdb-ripple-color="dark"
-                      style="color: red"
-                    >
+                    <button type="submit" class="btn btn-outline-danger">
                       Delete Posting
                     </button>
                   </div>
