@@ -37,8 +37,8 @@ const getCarsByPriceRange = (priceRange) => {
 
   return db.query(`
     SELECT * FROM cars
-    WHERE listing_price > ($1 * 100)
-    AND listing_price < ($2 * 100)
+    WHERE listing_price >= ($1 * 100)
+    AND listing_price <= ($2 * 100)
     AND is_sold = FALSE
     ORDER BY listing_price`, priceRange)
     .then((res) => {

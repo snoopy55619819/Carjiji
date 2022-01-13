@@ -70,29 +70,35 @@
 
         <div class="container">
           <div class="row row-cols-1 row-cols-md-3 g-4">
-            <% for (const car of cars) { %>
-              <div class="col">
-                <div class="card text-center text-dark bg-light h-100">
-                  <div class="card-body">
-                    <h5 class="card-title">
-                      <%= car.car_year %>
-                        <%= car.car_make %>
-                          <%= car.car_model %>
-                            - $<%= car.listing_price / 100 %>
-                    </h5>
-                    <div class="card-body">
-                      <img src="<%= car.car_photo_url %>" class="card-img" alt="<%= car.car_year %>
-                  <%= car.car_make %> <%= car.car_model %> - $<%= car.listing_price / 100 %>">
-                    </div>
-                    <div class="card-body">
-                      <form method="POST" action="/cars/<%= car.id %>">
-                        <button class="btn btn-info" type="submit">View Listing</button>
-                      </form>
-                    </div>
-                  </div>
+            <% if (!cars.length) { %>
+              <div class="container text-center">
+                <div class="alert alert-info" role="alert">
+                  No cars to show!
                 </div>
               </div>
-              <% } %>
+              <% } else { %>
+                <% for (const car of cars) { %>
+                  <div class="col">
+                    <div class="card text-center text-dark bg-light h-100">
+                      <div class="card-body">
+                        <h5 class="card-title">
+                          <%= car.car_year %>
+                            <%= car.car_make %>
+                              <%= car.car_model %>
+                                - $<%= car.listing_price / 100 %>
+                        </h5>
+                        <div class="card-body">
+                          <img src="<%= car.car_photo_url %>" class="card-img" alt="<%= car.car_year %>
+                        <%= car.car_make %> <%= car.car_model %> - $<%= car.listing_price / 100 %>">
+                        </div>
+                        <div class="card-body">
+                          <a class="btn btn-info" href="/cars/<%= car.id %>">View Listing</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <% } %>
+                    <% } %>
           </div>
         </div>
 
