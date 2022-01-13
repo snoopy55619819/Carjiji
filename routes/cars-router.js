@@ -14,11 +14,9 @@ module.exports = () => {
   // GET Route: "/cars/"
   //  Show all cars
   router.get("/", (req, res) => {
-    carQueries
-      .getAllCars()
-      .then((cars) => {
-        // res.json({ cars });
-        res.render("cars", { cars });
+    carQueries.getAllActiveCars()
+      .then(cars => {
+        res.render('cars', { cars });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -38,6 +36,41 @@ module.exports = () => {
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
+      });
+  });
+
+  // POST Route: "/cars/search"
+  //  Search results page
+  router.post("/search", (req, res) => {
+    const priceRange = req.body.select_price_range;
+
+    if (!priceRange) {
+      return res.redirect('/cars');
+    } else {
+      const parsedPriceRange = priceRange.split(' ');
+
+      carQueries.getCarsByPriceRange(parsedPriceRange)
+        .then(cars => {
+          return res.render('cars', { cars });
+        })
+        .catch(err => {
+          return res.status(500).json({ error: err.message });
+        });
+    }
+  });
+
+  // POST Route: "/cars/:id"
+  //  Edit car posting details
+  router.post("/:id", (req, res) => {
+    db.query(`SELECT * FROM users;`)
+      .then(data => {
+        const cars = data.rows;
+        res.json({ cars });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
       });
   });
 
@@ -74,7 +107,7 @@ module.exports = () => {
     carQueries
       .editCarById(editingCar, carId)
       .then(() => {
-       res.redirect(`/cars/${carId}`);
+        res.redirect(`/cars/${carId}`);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
