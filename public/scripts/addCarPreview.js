@@ -4,13 +4,13 @@
     const $divWithImageInput = document.getElementById("addCarURLInputSection");
     const $divWithImagePreview = document.getElementById("addCarImagePreview");
     const $divWithCarURLValue = document.getElementById("addCarURLInputValue");
-    console.log($divWithImageInput);
+    // console.log($divWithImageInput);
 
 
     $($divWithImageInput).change(function () {
       console.log("changed away from url box");
       let imageURL = $($divWithCarURLValue).val();
-      console.log(typeof imageURL);
+      // console.log(typeof imageURL);
       $divWithImagePreview.src = imageURL;
     });
 
