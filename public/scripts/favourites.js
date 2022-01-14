@@ -54,6 +54,29 @@ $(() => {
   //   $( $divWithDetails ).hide();
   //   $( $divWithEdits ).show( "slow" );
   // });
+
+
+
+  $(function () {
+    $.ajax({
+      type: "GET",
+      url: '/favourites/api',
+      data: {},
+      success: (favList) => {
+        let currentCar_id = Number(window.location.href.substring(27));
+        let isFavourited = false;
+
+        for (fav of favList) {
+          if (fav.car_id = currentCar_id && fav.user_id === Number(user_id)) {
+            isFavourited = true;
+            $($favouriteIcon).css("color","gold");
+            return;
+          }
+        }
+      }
+    });
+  });
+
 });
 
 
