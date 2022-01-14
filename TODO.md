@@ -9,10 +9,10 @@ meet back at 8pm
 
 style homepage: (jeremy)
 - add margins to home page
-- add footer -> 75px
-- dropdown list color to yellow
+- [x] add footer -> 75px
+- [ ] dropdown list color to yellow -- Unable to implement
 - card formats
-- change button to outline-info and hover to solid-info
+- [x] change button to outline-info and hover to solid-info
 
 My listings: (jeremy)
 - [x] add footer
