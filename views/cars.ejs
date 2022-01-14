@@ -19,13 +19,13 @@
     <%- include('partials/_header') %>
 
       <div class="container">
-        <div class="row">
+        <div class="row" style="margin: 1rem;">
           <form class="d-flex" method="POST" action="/cars/search">
             <input class="form-control me-2" type="search" placeholder="Search for Cars" name="search" />
             <button class="btn btn-primary" type="submit">Search</button>
         </div>
 
-        <div class="row">
+        <div class="row" style="margin: 1rem;">
           <div class="col">
             <select class="form-select form-select-sm" aria-label="Default select example" name="select_makes">
               <option selected value="">Select a Make</option>
@@ -103,7 +103,7 @@
           </div>
         </div>
 
-        <div class="pagination-container">
+        <div class="pagination-container" style="margin-top: 2rem;">
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item"><a class="page-link" href="#">Previous</a></li>
