@@ -15,9 +15,9 @@ style homepage: (jeremy)
 - change button to outline-info and hover to solid-info
 
 My listings: (jeremy)
-- add footer -> 75px
-- change color theme
-- add alert to show 
+- [x] add footer
+- [x] change color theme
+- [x] add alert to show 
 
 Favourites:(jeremy)
 - add footer -> 75px
