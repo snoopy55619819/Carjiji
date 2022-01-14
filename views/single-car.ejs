@@ -35,8 +35,9 @@
           <div class="col-md-4">
             <div class="card-body">
               <h5 class="card-title">
-                Card title : <%= car.car_make %>
-                  <%= car.car_year %>
+                <%= car.car_make %>
+                <%= car.car_model %>
+                <%= car.car_year %>
               </h5>
               <!-- Tables without border-->
               <table class="table table-borderless">
@@ -83,7 +84,7 @@
           <div class="col-md-2">
             <!-- Forms -->
             <form class="message-form"
-              action="mailto:<%= car.owner_email %>?subject=Mail%20From%20Cars%20WebSite&body=Is%20this%20car%20available"
+              action="mailto:<%= car.owner_email %>?subject=Mail%20From%20Carjiji%20WebSite&body=Is%20this%20car%20available"
               method="POST">
               <div>
                 <h5>Contact Car Owner</h5>
