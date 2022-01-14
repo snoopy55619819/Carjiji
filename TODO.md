@@ -20,9 +20,9 @@ My listings: (jeremy)
 - [x] add alert to show 
 
 Favourites:(jeremy)
-- add footer -> 75px
-- change color theme
-- Delete 'remove listing' button.  
+- [x] add footer
+- [x] change color theme
+- [x] Delete 'remove listing' button.  
 
 My account: (nikhil)
 - change colors - FIXED
