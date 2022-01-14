@@ -29,7 +29,7 @@
       <div class="image_section">
 
         <div class="card-body">
-          <img src="" class="img-fluid rounded" alt="Add image url for preview" />
+          <img src="" class="img-fluid rounded" alt="Add image url for preview" id="addCarImagePreview"/>
         </div>
 
       </div>
@@ -60,9 +60,9 @@
           <input type="text" name="listing_price" class="form-control rounded" aria-label="Amount (to the nearest dollar)" />
         </div>
 
-        <div class="input-group mb-3 car_form_photo_element">
+        <div class="input-group mb-3 car_form_photo_element" id="addCarURLInputSection">
           <span class="input-group-text" id="inputGroup-sizing-default">Add photo url</span>
-          <input type="text" class="form-control" name="car_photo_url" />
+          <input type="text" class="form-control" id="addCarURLInputValue" name="car_photo_url" />
         </div>
 
         <div class="input-group mb-3 car_form_description_element">
@@ -83,5 +83,7 @@
 
 <%- include('partials/_footer') %>
 </body>
+
+<script type="text/javascript" src="/scripts/addCarPreview.js"></script>
 
 </html>
