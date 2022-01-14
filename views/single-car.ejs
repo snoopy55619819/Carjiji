@@ -18,7 +18,11 @@
   <link rel="stylesheet" href="/styles/single-car.css" type="text/css" />
 
 
-  <title>Single Car Features</title>
+  <title>
+    <%= car.car_year %>
+    <%= car.car_make %>
+    <%= car.car_model %>
+  </title>
 </head>
 
 <body>
@@ -89,7 +93,7 @@
               <div>
                 <h5>Contact Car Owner</h5>
               </div>
-              <div>
+              <!-- <div>
                 <p class="card-text">
                   <small class="text-muted">Write your message to car owner.</small>
                 </p>
@@ -99,11 +103,14 @@
                   placeholder="Your message"
                   name="message"
                 ></textarea>
-              </div>
+
+              </div> -->
               <br />
-              <button type="submit" class="btn btn-outline-info">
+              <% let a = ('Hello, I am interested in the ' + car.car_year + ' ' + car.car_make + ' ' + car.car_model + '!'); %>
+              <a class="btn btn-outline-info" href="mailto:<%= car.owner_email %>?subject=Mail%20From%20Carjiji%20WebSite&body=<%=a%>">Send Email Message</a>
+              <!-- <button type="submit" class="btn btn-outline-info">
                 Send Message
-              </button>
+              </button> -->
             </form>
             <br>
 
