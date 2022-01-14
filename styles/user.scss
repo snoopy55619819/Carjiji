@@ -1,28 +1,32 @@
 $primary-color: black;
 
 .account_info {
-  outline: $primary-color;
-  outline-style:double;
-  outline-width: 1px;
+
+  border-radius: 10px;
+  width: 60%;
 
   font-family: Montserrat;
 
 
-  color: $primary-color;
+  // color: $primary-color;
+  background-color: #064663;
+  color: white;
 
   padding: 1em;
   margin: 1em 2em 0 2em;
 
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column;
   align-items: center;
+  justify-content: center;
 
-  h1 {
+  h1 .account_heading {
     width: 100%;
     margin-top: 0;
     font-weight: normal;
     font-size: 24px;
     line-height: 36px;
+    justify-content: center;
   }
   .acc_info_id {
     width: 50%;
@@ -35,3 +39,14 @@ $primary-color: black;
   }
 }
 
+
+
+.user_details_text {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.card_account_section {
+  display: flex;
+  justify-content: center;
+}
