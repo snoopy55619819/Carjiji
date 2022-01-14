@@ -9,20 +9,20 @@ meet back at 8pm
 
 style homepage: (jeremy)
 - add margins to home page
-- add footer -> 75px
-- dropdown list color to yellow
+- [x] add footer -> 75px
+- [ ] dropdown list color to yellow -- Unable to implement
 - card formats
-- change button to outline-info and hover to solid-info
+- [x] change button to outline-info and hover to solid-info
 
 My listings: (jeremy)
-- add footer -> 75px
-- change color theme
-- add alert to show 
+- [x] add footer
+- [x] change color theme
+- [x] add alert to show 
 
 Favourites:(jeremy)
-- add footer -> 75px
-- change color theme
-- Delete 'remove listing' button.  
+- [x] add footer
+- [x] change color theme
+- [x] Delete 'remove listing' button.  
 
 My account: (nikhil)
 - change colors - FIXED
