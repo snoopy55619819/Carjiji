@@ -22,7 +22,8 @@
       crossorigin="anonymous"></script>
 
     <!-- App CSS -->
-    <link rel="stylesheet" href="/styles/userListings.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/favouriteListings.css" type="text/css" />
 
   </head>
 
@@ -46,12 +47,12 @@
                         <%= car.car_model %> <br>
                           Listed for: $<%= car.listing_price / 100 %><br>
                   </p>
-                  <div class="card-buttons">
-                    <!-- <input type="button" onClick="location.href='/cars/<%= car.id %>'" value="View listing" class="btn btn-outline-info"> -->
-                    <a class="btn btn-outline-info" href="/cars/<%= car.id %>">View Listing</a>
-                    <!-- <button type="submit" class="btn btn-outline-info">Remove Favourite</button> -->
-                    <a class="btn btn-outline-info" href="/user/favourites">Remove Favourite</a>
-                  </div>
+                  <!-- <div class="card-buttons"> -->
+                    <div class="card-buttons">
+
+                      <a class="btn btn-outline-info" href="/cars/<%= car.id %>">View Listing</a>
+                    </div>
+                  <!-- </div> -->
                 </div>
               </div>
               <% } %>
