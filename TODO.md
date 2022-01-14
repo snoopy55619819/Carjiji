@@ -29,9 +29,9 @@ My account: (nikhil)
 - change button to outline-info and hover to solid-info - FIXED
 
 Add new car: (nikhil)
-- url and description not getting values
-- price needs to be stored *100
-- remove cents box in form
+- url and description not getting values - FIXED
+- price needs to be stored *100 - FIXED
+- remove cents box in form - FIXED
 - render the image preview
 
 Single car page: (olga)

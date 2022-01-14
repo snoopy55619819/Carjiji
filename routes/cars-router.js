@@ -117,22 +117,23 @@ module.exports = () => {
   // POST Route: "/cars/new"
   //  Add new car posting
   router.post("/new", (req, res) => {
-    const loggedInUserId = req.cookies.user_id;
-    console.log(req.body);
+    const loggedInUserId = Number(req.cookies.user_id);
+    // console.log(req.body);
 
     const newCar = {
       owner_id: loggedInUserId,
       car_make: req.body.car_make || "",
       car_model: req.body.car_model || "",
       car_year: req.body.car_year || "",
-      listing_price: req.body.listing_price || 0,
+      listing_price: req.body.listing_price * 100 || 0,
       car_photo_url: req.body.car_photo_url || "",
       description: req.body.description || "",
     };
+    // console.log('parsed req body: ', newCar);
     //owner_id, car_make, car_model, car_year, listing_price, car_photo_url, description
     carQueries.addCar(newCar)
       .then((car) => {
-        console.log(car);
+        // console.log(car);
         res.redirect(`/cars/${car.id}`);
       })
       .catch((err) => {

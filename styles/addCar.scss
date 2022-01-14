@@ -3,18 +3,25 @@ $form-padding: 0 1em 0 1em;
 
 body {
   width: 100%;
+
+}
+
+.card_section {
+  display: flex;
+  justify-content: center;
 }
 
 //whole listing section screen
 .new_listing_section {
-  display: none;
   display: flex;
   flex-flow: row wrap;
 
   //input section (with outlined border)
   .new_listing_input {
-
-    width: 100%;
+    border-radius: 10px;
+    background-color: #064663;
+    color: white;
+    // width: 80%;
     outline: $primary-color;
     outline-style:double;
     outline-width: 1px;
@@ -25,7 +32,7 @@ body {
     margin: 1em 2em 0 2em;
 
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row;
     align-items: center;
 
     //heading
@@ -36,6 +43,7 @@ body {
       font-size: 24px;
       line-height: 36px;
       padding: $form-padding;
+      color: white;
     }
 
     //entry form
@@ -65,4 +73,14 @@ body {
     }
 
   }
+}
+
+.image_section {
+  color: white;
+  width: 50%;
+  padding: 1rem;;
+}
+
+.title_and_form {
+  width: 50%;
 }

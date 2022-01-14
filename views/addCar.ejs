@@ -17,10 +17,25 @@
 
 <body>
 
-<div id="newDIV">
 
   <div class='new_listing_section'>
-    <div class="new_listing_input">
+
+
+    <div class="card_section">
+
+
+      <div class="new_listing_input">
+
+      <div class="image_section">
+
+        <div class="card-body">
+          <img src="" class="img-fluid rounded" alt="Add image url for preview" />
+        </div>
+
+      </div>
+
+      <div class="title_and_form">
+
       <h1 class='account_heading'>Add new listing:</h1>
 
       <form class="new_listing_form" action="/cars/new" method="POST">
@@ -43,25 +58,30 @@
         <div class="input-group mb-3 car_form_element" >
           <span class="input-group-text border-0">Listing price($)</span>
           <input type="text" name="listing_price" class="form-control rounded" aria-label="Amount (to the nearest dollar)" />
-          <span class="input-group-text border-0">.00</span>
         </div>
 
         <div class="input-group mb-3 car_form_photo_element">
           <span class="input-group-text" id="inputGroup-sizing-default">Add photo url</span>
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" name="car_photo_url" />
         </div>
 
         <div class="input-group mb-3 car_form_description_element">
           <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
-          <textarea class="form-control" id="textAreaExample" rows="4"></textarea>
+          <textarea class="form-control" id="textAreaExample" rows="4" name="description"></textarea>
         </div>
         <div class="car_form_button">
           <button type="submit" class="btn btn-primary">Add new listing</button>
         </div>
       </form>
     </div>
+
+
+  </div>
+
   </div>
 </div>
+
+<%- include('partials/_footer') %>
 </body>
 
 </html>
