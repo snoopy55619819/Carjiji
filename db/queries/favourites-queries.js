@@ -14,7 +14,8 @@ const getAllFavourites = () => {
 const getFavouritesForUser = (user_id) => {
 
   return db.query(`
-    SELECT * FROM cars
+    SELECT cars.*
+    FROM cars
     JOIN users_favorite_cars ON cars.id = users_favorite_cars.car_id
     JOIN users ON users.id = users_favorite_cars.user_id
     WHERE user_id = $1
