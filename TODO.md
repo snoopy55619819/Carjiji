@@ -32,7 +32,7 @@ Add new car: (nikhil)
 - url and description not getting values - FIXED
 - price needs to be stored *100 - FIXED
 - remove cents box in form - FIXED
-- render the image preview
+- render the image preview - FIXED
 
 Single car page: (olga)
 - message issue 'message=..." for body- later
