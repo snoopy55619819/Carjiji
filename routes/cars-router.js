@@ -104,6 +104,7 @@ module.exports = () => {
   router.post("/u/:id", (req, res) => {
     const carId = Number(req.params.id); //7
     const editingCar = req.body;
+     console.log("editingCar from edit route", editingCar );
     carQueries
       .editCarById(editingCar, carId)
       .then(() => {
@@ -141,18 +142,22 @@ module.exports = () => {
       });
   });
 
+
+
   // POST Route: "/cars/:id/delete"
   //  Delete a car posting
   router.post("/:id/delete", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then((data) => {
-        const cars = data.rows;
-        res.json({ cars });
-      })
+    const carIdToDelete = Number(req.params.id);
+     carQueries.deleteCarbyId(carIdToDelete)
+       .then(() => {
+      res.redirect("/user/listings")
+       })
       .catch((err) => {
-        res.status(500).json({ error: err.message });
+      res.status(500).json({ error: err.message });
       });
   });
+
+
 
   // POST Route: "/cars/:id/sold"
   //  Mark car as sold

@@ -38,8 +38,8 @@ Add new car: (nikhil)
 Single car page: (olga)
 - message issue 'message=..." for body- later
 - check send message option - later
-- footer -> 75px
-- fix price * 100
-- delete button functionality
-- edit listing section format should be row
+- + footer -> 75px 
+- + fix price * 100
+- + delete button functionality
+- + edit listing section format should be row
 

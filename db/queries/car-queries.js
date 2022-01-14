@@ -140,7 +140,7 @@ const editCarById = (editingCar, carId) => {
       editingCar.car_model,
       editingCar.car_make,
       editingCar.car_year,
-      editingCar.listing_price,
+      editingCar.listing_price * 100,
       editingCar.car_photo_url,
       editingCar.description,
       carId ];
@@ -184,6 +184,17 @@ const makeCarActive = (car_id) => {
     .catch(err => err.message);
 };
 
+const deleteCarbyId = (carId)=>{
+  return db.query( `
+  DELETE FROM cars
+  WHERE cars.id = $1
+  RETURNING *
+  `, [carId])
+  .then ((res)=>{
+    return res.rows[0];
+  })
+  .catch (err => err.message)
+};
 
 module.exports = {
   getAllCars,
@@ -195,5 +206,6 @@ module.exports = {
   getCarAndOwnerByCarId,
   makeCarSold,
   makeCarActive,
-  editCarById
+  editCarById,
+  deleteCarbyId
 };
