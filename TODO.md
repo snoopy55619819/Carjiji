@@ -25,8 +25,8 @@ Favourites:(jeremy)
 - Delete 'remove listing' button.  
 
 My account: (nikhil)
-- change colors 
-- change button to outline-info and hover to solid-info
+- change colors - FIXED
+- change button to outline-info and hover to solid-info - FIXED
 
 Add new car: (nikhil)
 - url and description not getting values
