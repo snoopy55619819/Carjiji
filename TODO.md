@@ -23,6 +23,7 @@ Favourites:(jeremy)
 - [x] add footer
 - [x] change color theme
 - [x] Delete 'remove listing' button.  
+- when 'view listing' is clicked, does not go to proper car/:id page.
 
 My account: (nikhil)
 - change colors - FIXED
