@@ -134,8 +134,8 @@
                     id="carImagePreview" />
                 </div>
               </div>
-            </div>
-            <div class="col-md-6">
+
+              <div class="col-md-6">
               <div class="card-body">
                 <h5 class="card-title">Edit car info</h5>
                 <!-- Forms -->
@@ -170,9 +170,8 @@
 
                     <div class="input-group mb-3 car_form_element">
                       <span class="input-group-text border-0">Listing price($)</span>
-                      <input type="text" name="listing_price" class="form-control rounded"
-                        aria-label="Amount (to the nearest dollar)" value="<%= car.listing_price/100 %>" />
-                      <span class="input-group-text border-0">.00</span>
+                      <input type="text" name="listing_price" class="form-control rounded" placeholder="as 12000 for twelve thousand"
+                        value="<%= car.listing_price/100 %>" />
                     </div>
 
                   <div
@@ -203,40 +202,36 @@
                       id="edditing-car-textarea"
                       rows="4"
                       name="description"
-                    >
-<%= car.description %></textarea
+                    ><%= car.description %></textarea
                     >
                   </div>
-                  <div class="car_form_button">
-                  <button type="submit" class="btn btn-outline-info">
+                  <div class="car_form_button ">
+                  <button type="submit" class="button-from-edit-form btn btn-outline-info">
                     Update listing
                   </button>
                 </form>
-
                     <button
                       type="submit"
-                      class="btn btn-outline-info"
+                      class="button-from-edit-form btn btn-outline-info "
                       id="edit-car-toggle-cancel"
                     >
-                      Cancel
+                      Cancel listing
                     </button>
-
-
-
                     <form method="POST" action="/cars/<%=car.id %>/delete">
-                      <button type="submit" class="btn btn-outline-danger">
+                      <button type="submit" class=" button-from-edit-form btn btn-outline-danger">
                         Delete Posting
                       </button>
                     </form>
-
-
-
-                  </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+
         <% } %>
+       <div style="height: 75px;">
+       </div>
+        <%- include('partials/_footer') %>
     </main>
 </body>
 

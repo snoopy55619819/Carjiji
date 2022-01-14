@@ -19,7 +19,8 @@ main {
   text-align: justify;
 }
 i{
-color: hotpink;
+color:
+#ECB365;
 }
 .message-form {
   margin: 20px ;
@@ -39,7 +40,8 @@ i.fas {
   color: black;
 }
 
-// i.fas:hover {
-//   color: gold;
-// }
+.car_form_button{
+  display: flex;
+  justify-content: space-evenly;
+}
 

@@ -146,19 +146,17 @@ module.exports = () => {
   // POST Route: "/cars/:id/delete"
   //  Delete a car posting
   router.post("/:id/delete", (req, res) => {
-    const carIdToDelete = Number(req.params.id); //7
-    const deletingCar = req.body;
-    console.log("carIdToDelete", carIdToDelete );
-    console.log("deletingCar from delete route", deletingCar );
-    // db.query(`SELECT * FROM users;`)
-    //   .then((data) => {
-    //     const cars = data.rows;
-    //     res.json({ cars });
-    //   })
-    //   .catch((err) => {
-    //     res.status(500).json({ error: err.message });
-    //   });
+    const carIdToDelete = Number(req.params.id);
+     carQueries.deleteCarbyId(carIdToDelete)
+       .then(() => {
+      res.redirect("/user/listings")
+       })
+      .catch((err) => {
+      res.status(500).json({ error: err.message });
+      });
   });
+
+
 
   // POST Route: "/cars/:id/sold"
   //  Mark car as sold
