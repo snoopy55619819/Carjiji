@@ -56,36 +56,24 @@ $(() => {
   // });
 
 
+  const loggedInUserId = Number(user_id);
   // ajax
-  // $(function () {
-  //   $.ajax({
-  //     type: "GET",
-  //     url: '/favourites/api',
-  //     data: {},
-  //     success: (favList) => {
-  //       let currentCar_id = Number(window.location.href.substring(27));
-  //       let isFavourited = false;
-  //       console.log(favList);
-  //       for (fav of favList) {
-  //         if (fav.car_id = currentCar_id && fav.user_id === Number(user_id)) {
-  //           isFavourited = true;
-  //           // console.log(fav);
-  //           // console.log('set isfavourited to true: ')
-  //           // console.log('currentCar_id', currentCar_id)
-  //           // console.log('user_id', Number(user_id));
+  $(function () {
+    $.ajax({
+      type: "GET",
+      url: '/favourites/api/:loggedInUserId',
+      success: (favList) => {
+        let currentCar_id = Number(window.location.href.substring(27));
 
-  //         }
-  //       }
-  //       if (isFavourited) {
-  //         console.log('car is favourited');
-  //         $($favouriteIcon).css("color","gold");
-  //       } else {
-  //         console.log('car is not favourited');
-  //         $($favouriteIcon).css("color","black");
-  //       }
-  //     }
-  //   // });
-  // });
+        for (fav of favList) {
+          if (fav.car_id === currentCar_id && fav.user_id === loggedInUserId) {
+            return $($favouriteIcon).css("color","gold");
+          }
+        }
+        $($favouriteIcon).css("color","black");
+      }
+    });
+  });
 
 });
 
