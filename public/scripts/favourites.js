@@ -61,7 +61,7 @@ $(() => {
   $(function () {
     $.ajax({
       type: "GET",
-      url: '/favourites/api/:loggedInUserId',
+      url: '/favourites/api',
       success: (favList) => {
         let currentCar_id = Number(window.location.href.substring(27));
 
