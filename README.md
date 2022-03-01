@@ -13,8 +13,10 @@ Git for version control.
 
 ## Final Product
 
+Home page
 !["main view"](docs/main-page.png)
 
+Add new car
 !["add new car"](docs/add-new-car.png)
 
 ## Getting Started
@@ -38,3 +40,10 @@ Git for version control.
 - Node 10.x or above
 - NPM 5.x or above
 - PG 6.x
+- Bootstrap 5.x,
+- Cookie-parser 1.x,
+- EJS 2.x,
+- Express 4.x,
+- Morgan 1.x,
+- PG 8.x,
+- Sass 1.x
