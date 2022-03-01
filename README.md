@@ -14,10 +14,10 @@ Git for version control.
 ## Final Product
 
 Home page
-!["main view"](docs/main-page.png)
+!["main view"](https://github.com/snoopy55619819/Carjiji/blob/master/docs/main-page.png?raw=true)
 
 Add new car
-!["add new car"](docs/add-new-car.png)
+!["add new car"](https://github.com/snoopy55619819/Carjiji/blob/master/docs/add-new-car.png?raw=true)
 
 ## Getting Started
 
