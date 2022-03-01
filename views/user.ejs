@@ -42,7 +42,7 @@
       <div class='acc_info_element'>
         Email: <%= user.email %>
         <form action="/user" method="POST" class="pure-form">
-          <input type="text" name="email" value="<%= user.email%>">
+          <input type="email" name="email" value="<%= user.email%>">
           <button type="submit" class="btn btn-outline-info">Update email</button>
       </form>
       </div>
@@ -68,7 +68,7 @@
 
 
   <section>
-    <br>Stretch: add listing data/statistics here
+    <br>
   </body>
 <footer>
   <%- include('partials/_footer') %>
